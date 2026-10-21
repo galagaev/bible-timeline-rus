@@ -111,7 +111,7 @@ body{background:var(--bg);color:var(--fg);font-family:var(--sans);font-size:15px
 .tip[hidden],[hidden]{display:none!important}
 /* лоадер: виден, пока страница загружается и рисуется в первый раз */
 .loader{position:fixed;inset:0;z-index:100;background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;color:var(--muted);font-family:var(--sans);font-size:14px}
-.loader .spin{width:34px;height:34px;box-sizing:border-box;border-radius:50%;border:3px solid var(--line);border-top-color:var(--gold);animation:spin .8s linear infinite}
+.loader .spin{width:34px;height:34px;box-sizing:border-box;border-radius:50%;border:3px solid var(--line);border-top-color:var(--fg);animation:spin .8s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
 @media (prefers-reduced-motion:reduce){.loader .spin{animation-duration:2.4s}}
 /* Каркас: колонка приложения и что видно в каждом режиме */
@@ -566,7 +566,9 @@ en:{title:'Bible Timeline',sub:(n,m)=>`${n} people and ${m} events, from Adam to
  bc:'BC',ad:'AD',tick10bc:'10 BC',tick10ad:'AD 10'}};
 // издание задаётся при сборке (EDITION): ru — русский и английский, en — только английский
 const LANGS=(typeof EDITION!=='undefined'&&EDITION.langs)||['ru','en'];
-let LANG=LANGS[0];// издание всегда открывается на своём основном языке (русское — на русском); переключение действует до закрытия страницы
+// язык: выбранный посетителем в этом издании, иначе основной язык издания (русское — русский)
+const LANG_KEY='pc-lang-'+((typeof EDITION!=='undefined'&&EDITION.id)||'ru');
+let LANG=LANGS[0];if(LANGS.length>1)try{const s=localStorage.getItem(LANG_KEY);if(LANGS.includes(s))LANG=s}catch(_){}
 if(!LANGS.includes(LANG))LANG=LANGS[0];
 const T=k=>L10N[LANG][k];
 const EN=()=>LANG==='en';
@@ -1271,7 +1273,7 @@ try{const th=localStorage.getItem('pc-theme');if(th==='dark'||th==='light')docum
 document.getElementById('themeBtn').onclick=()=>{const n=isDark()?'light':'dark';document.documentElement.dataset.theme=n;try{localStorage.setItem('pc-theme',n)}catch(_){}themeUpd()};
 matchMedia('(prefers-color-scheme: dark)').addEventListener?.('change',themeUpd);
 // ---------- язык
-function setLang(l){LANG=l;regroup();applyStatic();document.getElementById('sub').textContent=subText();
+function setLang(l){LANG=l;try{localStorage.setItem(LANG_KEY,l)}catch(_){}regroup();applyStatic();document.getElementById('sub').textContent=subText();
   drawGroups();layout();const pop=document.getElementById('infoPop');if(!pop.hidden)pop.innerHTML=infoHTML();
   if(sel!=null&&!drawer.hidden)openDrawer(P[sel]);if(q.value&&sel!=null)q.value=N(P[sel]);
   drawViews();if(mode==='para')drawPara();if(mode==='tree')drawTree();if(mwState&&mwState.open&&!drawer.hidden)openMW(mwState.y,mwState.w);// «Тем временем» перерисовываем, только если оно сейчас открыто
