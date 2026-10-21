@@ -1412,8 +1412,11 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!dlDlg.hidden)dlClo
 document.getElementById('dlBtn').onclick=openDL;
 document.getElementById('dlGo').onclick=()=>{const s=DL.s||sheetSVG(DL.a,DL.b),img=new Image();
   img.onload=()=>{const k=Math.min(3508/s.w,16000/s.h),c=document.createElement('canvas');c.width=Math.round(s.w*k);c.height=Math.round(s.h*k);
-    const g=c.getContext('2d');g.drawImage(img,0,0,c.width,c.height);c.toBlob(bl=>{const u=URL.createObjectURL(bl),l=document.createElement('a');
-      const yy=y=>y>0?y+'BC':'AD'+(-y);l.href=u;l.download=`bible-timeline_${yy(DL.a)}-${yy(DL.b)}.png`;document.body.appendChild(l);l.click();l.remove();setTimeout(()=>URL.revokeObjectURL(u),4000)},'image/png')};
+    const g=c.getContext('2d');g.drawImage(img,0,0,c.width,c.height);c.toBlob(async bl=>{const yy=y=>y>0?y+'BC':'AD'+(-y),name=`bible-timeline_${yy(DL.a)}-${yy(DL.b)}.png`;
+      // внутри артефакта Claude файл отдаётся через возможность downloads (с подтверждением), на сайте — обычной ссылкой
+      const dl=window.claude&&window.claude.use?await window.claude.use('downloads').catch(()=>null):null;
+      if(dl){dl.save({filename:name,data:bl}).catch(()=>{});return}
+      const u=URL.createObjectURL(bl),l=document.createElement('a');l.href=u;l.download=name;document.body.appendChild(l);l.click();l.remove();setTimeout(()=>URL.revokeObjectURL(u),4000)},'image/png')};
   img.src=sheetURL(s)};
 // ---------- Библия внутри страницы: Синодальный перевод и KJV (сжатый текст, распаковывается при первом открытии)
 const BFULL={/*@ru*/ru:{GEN:'Бытие',EXO:'Исход',LEV:'Левит',NUM:'Числа',DEU:'Второзаконие',JOS:'Иисус Навин',JDG:'Судьи',RUT:'Руфь','1SA':'1 Царств','2SA':'2 Царств','1KI':'3 Царств','2KI':'4 Царств','1CH':'1 Паралипоменон','2CH':'2 Паралипоменон',EZR:'Ездра',NEH:'Неемия',EST:'Есфирь',JOB:'Иов',PSA:'Псалтирь',PRO:'Притчи',ECC:'Екклесиаст',SNG:'Песнь песней',ISA:'Исаия',JER:'Иеремия',LAM:'Плач Иеремии',EZK:'Иезекииль',DAN:'Даниил',HOS:'Осия',JOL:'Иоиль',AMO:'Амос',OBA:'Авдий',JON:'Иона',MIC:'Михей',NAM:'Наум',HAB:'Аввакум',ZEP:'Софония',HAG:'Аггей',ZEC:'Захария',MAL:'Малахия',MAT:'От Матфея',MRK:'От Марка',LUK:'От Луки',JHN:'От Иоанна',ACT:'Деяния',JAS:'Иакова','1PE':'1 Петра','2PE':'2 Петра','1JN':'1 Иоанна','2JN':'2 Иоанна','3JN':'3 Иоанна',JUD:'Иуды',ROM:'Римлянам','1CO':'1 Коринфянам','2CO':'2 Коринфянам',GAL:'Галатам',EPH:'Ефесянам',PHP:'Филиппийцам',COL:'Колоссянам','1TH':'1 Фессалоникийцам','2TH':'2 Фессалоникийцам','1TI':'1 Тимофею','2TI':'2 Тимофею',TIT:'Титу',PHM:'Филимону',HEB:'Евреям',REV:'Откровение'},/*@/ru*/
