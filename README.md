@@ -18,5 +18,3 @@
 
 ## Источники
 Theographic Bible Metadata (CC BY-SA 4.0), BibleHub, словарь Истона (общественное достояние), Cliopatria / Seshat (CC BY 4.0), Natural Earth.
-
-Автор: [@galagaev](https://t.me/galagaev)
