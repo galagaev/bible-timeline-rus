@@ -658,7 +658,7 @@ const P=DATA.P, PL=DATA.PL;
 const L10N={
 /*@ru*/ru:{title:'Библейский таймлайн',sub:(n,m,k)=>`${n} человек и ${m} ${[2,3,4].includes(k%10)&&![12,13,14].includes(k%100)?'события':k%10===1&&k%100!==11?'событие':'событий'} от Адама до наших дней: все, кто назван в Библии, и главные фигуры христианства`,
  byGen:'примерно, по родословию',hlClear:'Сбросить',dlBtn:'Скачать лист',dlTitle:'Скачать лист',dlNote:'В лист попадают группы и точность дат, выбранные на шкале.',dlFrom:'С',dlTo:'по',dlShort:'Скачать',qrTxt:'Откройте сайт на телефоне',dlHint:'нажмите на эпоху или потяните рамку',dlGo:'Скачать PNG',dlPdf:'Скачать PDF',cookieTxt:'Этот сайт использует cookies',cookieOk:'Понятно',pageLoading:'Загрузка…',rtSyn:'СИН',dMin:'Свернуть карточку',selOpen:'Открыть карточку',tFold:'Свернуть ветку (Shift — со всеми внутренними)',tUnfold:'Развернуть ветку (Shift — целиком)',tAround:'Вокруг человека',tLine:'Линия',tCenter:'В центре',tByTribe:'Колена',tByGroup:'Группы',tShowTl:'Показать на шкале',tSpouse:'супруг(а)',tMother:'мать',tApprox:'годы примерно',tNoTribe:'колено неизвестно',family:'Родословие',
- mode:'Режим',timeline:'Таймлайн',map:'Карта',para:'Парадоксы времени',study:'Субботняя школа',stQuarter:'квартал',stQShort:'кв.',stQPick:'Выбрать квартал',stBack:'К уроку',stBackT:'Вернуться в урок, к тому же месту',studyLesson:'Урок',studyPick:'Выбрать урок',studyIntro:'Введение',studyVerses:'Библейские стихи для исследования:',studyMemory:'Памятный стих:',studyPrev:'Предыдущий день',studyNext:'Следующий день',studySoon:'Уроки субботней школы на английском языке появятся позже.',studyErr:'Не удалось загрузить уроки. Проверьте соединение и откройте раздел ещё раз.',studyHint:'Подчёркнутые имена, события и места открывают карточку или карту, ссылки на стихи — Библию.',tree:'Родословие',randomP:'Случайный парадокс',paraIntro:'Сравнения отрезков времени. Числа посчитаны по датам этой шкалы.',treeSoon:'Родословие появится здесь: древо выбранного человека — предки, потомки, братья и сёстры, раскрашенные по коленам.',mw:'Тем временем',mwW0:'этот год',mwW:n=>`±${n} лет`,mwNone:'В эти годы во включённых группах ничего нет.',mwBack:'← Тем временем',prevY:'Раньше',nextY:'Позже',nYrs:n=>{const a=Math.abs(n)%100,b=a%10;return n+' '+(a>10&&a<20?'лет':b===1?'год':b>=2&&b<=4?'года':'лет')},groups:'Группы',certs:'Точность дат',groupsN:(n,m)=>`Группы: ${n} из ${m}`,certsAll:'Точность дат: все',certsN:c=>`Точность дат: ${c} из 3`,datesShort:'Даты',
+ mode:'Режим',timeline:'Таймлайн',map:'Карта',para:'Парадоксы времени',study:'Субботняя школа',stQuarter:'квартал',stQShort:'кв.',stQPick:'Выбрать квартал',stBack:'К уроку',stBackT:'Вернуться в урок, к тому же месту',rdBackT:'Вернуться в Библию, к тому же месту',studyLesson:'Урок',studyPick:'Выбрать урок',studyIntro:'Введение',studyVerses:'Библейские стихи для исследования:',studyMemory:'Памятный стих:',studyPrev:'Предыдущий день',studyNext:'Следующий день',studySoon:'Уроки субботней школы на английском языке появятся позже.',studyErr:'Не удалось загрузить уроки. Проверьте соединение и откройте раздел ещё раз.',studyHint:'Подчёркнутые имена, события и места открывают карточку или карту, ссылки на стихи — Библию.',tree:'Родословие',randomP:'Случайный парадокс',paraIntro:'Сравнения отрезков времени. Числа посчитаны по датам этой шкалы.',treeSoon:'Родословие появится здесь: древо выбранного человека — предки, потомки, братья и сёстры, раскрашенные по коленам.',mw:'Тем временем',mwW0:'этот год',mwW:n=>`±${n} лет`,mwNone:'В эти годы во включённых группах ничего нет.',mwBack:'← Тем временем',prevY:'Раньше',nextY:'Позже',nYrs:n=>{const a=Math.abs(n)%100,b=a%10;return n+' '+(a>10&&a<20?'лет':b===1?'год':b>=2&&b<=4?'года':'лет')},groups:'Группы',certs:'Точность дат',groupsN:(n,m)=>`Группы: ${n} из ${m}`,certsAll:'Точность дат: все',certsN:c=>`Точность дат: ${c} из 3`,datesShort:'Даты',
  searchPh:'Найти человека или событие: Иеремия, Исход, Павел…',searchAria:'Поиск по именам',search:'Поиск',noMatch:'Никого не нашлось',undated:'без даты',
  mapAria:'Карта мест, где упоминаются люди выбранного времени',v_canaan:'Ханаан',v_east:'Ближний Восток',v_med:'Средиземноморье',v_europe:'Европа',v_world:'Мир',places:'Города и места',states:'Государства',
  zoomIn:'Крупнее',zoomOut:'Мельче',card:'Карточка человека',close:'Закрыть',info:'О странице, легенда и источники',themeDark:'Тёмная тема',themeLight:'Светлая тема',langBtn:'EN',langTitle:'English version',
@@ -678,7 +678,7 @@ const L10N={
  bc:'до н. э.',ad:'н. э.',tick10bc:'10 до н. э.',tick10ad:'10 н. э.'},/*@/ru*/
 en:{title:'Bible Timeline',sub:(n,m)=>`${n} people and ${m} events, from Adam to the present day: everyone named in the Bible, and key figures of Christianity`,
  byGen:'approximate, from the genealogy',hlClear:'Clear',dlBtn:'Download sheet',dlTitle:'Download sheet',dlNote:'The sheet shows the groups and date certainty selected on the timeline.',dlFrom:'From',dlTo:'to',dlShort:'Download',qrTxt:'Open the site on your phone',dlHint:'click an era or drag the frame',dlGo:'Download PNG',dlPdf:'Download PDF',cookieTxt:'This site uses cookies',cookieOk:'OK',pageLoading:'Loading…',rtSyn:/*@ru*/'СИН'||/*@/ru*/'',dMin:'Minimise card',selOpen:'Open card',tFold:'Collapse branch (Shift — all levels)',tUnfold:'Expand branch (Shift — all levels)',tAround:'Around a person',tLine:'Line',tCenter:'Centre',tByTribe:'Tribes',tByGroup:'Groups',tShowTl:'Show on timeline',tSpouse:'spouse',tMother:'mother',tApprox:'approximate years',tNoTribe:'tribe unknown',family:'Family tree',
- mode:'Mode',timeline:'Timeline',map:'Map',para:'Paradoxes of time',study:'Sabbath School',stQuarter:'quarter',stQShort:'q.',stQPick:'Choose a quarter',stBack:'Back to lesson',stBackT:'Return to the lesson, at the same place',studyLesson:'Lesson',studyPick:'Choose a lesson',studyIntro:'Introduction',studyVerses:'Bible texts for study:',studyMemory:'Memory text:',studyPrev:'Previous day',studyNext:'Next day',studySoon:'Sabbath School lessons in English will appear later.',studyErr:'Could not load the lessons. Check the connection and open the section again.',studyHint:'Underlined names, events and places open a card or the map; verse references open the Bible.',tree:'Family tree',randomP:'Random paradox',paraIntro:'Comparisons of spans of time. The numbers come from this timeline’s dates.',treeSoon:'The family tree will appear here: ancestors, descendants and siblings of the selected person, coloured by tribe.',mw:'Meanwhile',mwW0:'this year',mwW:n=>`±${n} years`,mwNone:'Nothing in the enabled groups for these years.',mwBack:'← Meanwhile',prevY:'Earlier',nextY:'Later',nYrs:n=>n+(Math.abs(n)===1?' year':' years'),groups:'Groups',certs:'Date certainty',groupsN:(n,m)=>`Groups: ${n} of ${m}`,certsAll:'Date certainty: all',certsN:c=>`Date certainty: ${c} of 3`,datesShort:'Dates',
+ mode:'Mode',timeline:'Timeline',map:'Map',para:'Paradoxes of time',study:'Sabbath School',stQuarter:'quarter',stQShort:'q.',stQPick:'Choose a quarter',stBack:'Back to lesson',stBackT:'Return to the lesson, at the same place',rdBackT:'Return to the Bible, at the same place',studyLesson:'Lesson',studyPick:'Choose a lesson',studyIntro:'Introduction',studyVerses:'Bible texts for study:',studyMemory:'Memory text:',studyPrev:'Previous day',studyNext:'Next day',studySoon:'Sabbath School lessons in English will appear later.',studyErr:'Could not load the lessons. Check the connection and open the section again.',studyHint:'Underlined names, events and places open a card or the map; verse references open the Bible.',tree:'Family tree',randomP:'Random paradox',paraIntro:'Comparisons of spans of time. The numbers come from this timeline’s dates.',treeSoon:'The family tree will appear here: ancestors, descendants and siblings of the selected person, coloured by tribe.',mw:'Meanwhile',mwW0:'this year',mwW:n=>`±${n} years`,mwNone:'Nothing in the enabled groups for these years.',mwBack:'← Meanwhile',prevY:'Earlier',nextY:'Later',nYrs:n=>n+(Math.abs(n)===1?' year':' years'),groups:'Groups',certs:'Date certainty',groupsN:(n,m)=>`Groups: ${n} of ${m}`,certsAll:'Date certainty: all',certsN:c=>`Date certainty: ${c} of 3`,datesShort:'Dates',
  searchPh:'Find a person or event: Jeremiah, Exodus, Paul…',searchAria:'Search by name',search:'Search',noMatch:'No matches',undated:'undated',
  mapAria:'Map of places where people of the selected time are mentioned',v_canaan:'Canaan',v_east:'Near East',v_med:'Mediterranean',v_europe:'Europe',v_world:'World',places:'Places',states:'States',
  zoomIn:'Zoom in',zoomOut:'Zoom out',card:'Person card',close:'Close',info:'About, legend and sources',themeDark:'Dark theme',themeLight:'Light theme',/*@ru*/langBtn:'RU',langTitle:'Русская версия',/*@/ru*/
@@ -959,7 +959,7 @@ function markSel(){const band=gbody.querySelector('#selband'),rg=gbody.querySele
   if(!rg)return;// тонкие связи к отцу, матери и детям, если они видны на шкале
   const p=o.p,ids=[...rel(p,'fa'),...rel(p,'mo'),...rel(p,'ch')];let h='';const x1=X(p.ls??p.s),y1=o.y+BH/2;
   ids.forEach(i=>{const q=placed.find(z=>z.p.i===i);if(!q)return;const x2=X(q.p.ls??q.p.s),y2=q.y+BH/2,xv=Math.min(x1,x2)-8;h+=`<path class="rel" d="M${x1},${y1}H${xv}V${y2}H${x2}"/>`});rg.innerHTML=h}
-function select(i,opts={}){if(!opts.keepReader){const rd=document.getElementById('reader');if(rd&&!rd.hidden)rd.hidden=true;drawer.classList.remove('top')}// карточка не должна оказаться под открытой Библией
+function select(i,opts={}){if(!opts.keepReader)rdAway();// карточка не должна оказаться под открытой Библией: Библию убираем, на плашке — «‹ к Библии»
   if(PHL||(LHL&&!LHL.has(i))){PHL=null;LHL=null;layout()}sel=i;const p=P[i];if(mode!=='tree'&&p.s!=null&&p.g!=='tev'&&!visible(p)){on[p.g]=true;certOn[certOf(p)]=true;save();drawGroups();layout()}else{document.querySelectorAll('.pb.sel').forEach(g=>g.classList.remove('sel'));const g=gbody.querySelector(`.pb[data-i="${i}"]`);if(g)g.classList.add('sel');markSel()}
   openDrawer(p);if(opts.scroll)scrollToPerson(p,true);if(mode==='map')updateMap();}
 
@@ -970,15 +970,15 @@ document.getElementById('dclose').onclick=closeSel;
 // карточку можно свернуть в плашку: выбор (путь на карте, линии родства) остаётся; на телефонах и планшетах «Показать на карте/шкале» сворачивают её сами
 const mobQ=matchMedia('(max-width:1180px),(pointer:coarse)');// телефоны и планшеты
 function minDrawer(){drawer.hidden=true;if(mwState)mwState.open=false;updSelChip()}
-function updSelChip(){const c=document.getElementById('selchip'),on=sel!=null&&drawer.hidden&&mode!=='para'&&mode!=='study',back=stBack&&mode!=='study';
+function updSelChip(){const c=document.getElementById('selchip'),on=sel!=null&&drawer.hidden&&mode!=='para'&&mode!=='study',rb=typeof rdBack!=='undefined'&&rdBack&&reader.hidden,back=rb||stBack&&mode!=='study';
   c.hidden=!on&&!back;c.classList.toggle('only-back',!on);c.classList.toggle('over-drawer',!drawer.hidden&&!matchMedia('(max-width:700px)').matches);document.getElementById('selopen').hidden=!on;document.getElementById('selclr').hidden=!on;
-  const sb=document.getElementById('stback');sb.hidden=!back;if(back){sb.innerHTML=`<svg width="11" height="11" viewBox="0 0 12 12" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7.5 3L4.5 6l3 3"/></svg>${esc(T('stBack'))}`;sb.title=T('stBackT')}
+  const sb=document.getElementById('stback');sb.hidden=!back;if(back){sb.innerHTML=`<svg width="11" height="11" viewBox="0 0 12 12" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7.5 3L4.5 6l3 3"/></svg>${esc(rb?rdLabel(rdBack):T('stBack'))}`;sb.title=T(rb?'rdBackT':'stBackT')}
   if(!on)return;
   document.getElementById('seltxt').textContent=N(P[sel]);document.getElementById('seldot').style.background=gcol(P[sel].g)}
 document.getElementById('dmin').onclick=()=>sel!=null?minDrawer():closeSel();
 document.getElementById('selopen').onclick=()=>{if(sel!=null)openDrawer(P[sel])};
 document.getElementById('selclr').onclick=closeSel;
-document.getElementById('stback').onclick=()=>setMode('study');
+document.getElementById('stback').onclick=()=>{if(typeof rdBack!=='undefined'&&rdBack&&reader.hidden)rdReturn();else setMode('study')};
 mobQ.addEventListener('change',updSelChip);
 function openDrawer(p){if(!CARDS){loadCards().then(()=>{if(CARDS&&!drawer.hidden&&sel===p.i)openDrawer(p)});}const c=C(p);if(mwState)mwState.open=false;const back=mwBack&&mwState;mwBack=false;
   document.getElementById('dname').textContent=N(p);
@@ -1033,7 +1033,8 @@ const app=document.getElementById('app');
 const GVIEW=m=>m==='timeline'||m==='map'||m==='tree';let lastY=null;
 // stBack: перешли из урока на шкалу, карту или родословие по ссылке — на плашке внизу кнопка «К уроку»; выбор режима в меню её убирает
 let stBack=false,stScroll=0;
-function setMode(m,yT,manual){if(mode===m){if(yT!=null&&GVIEW(m))goYear(yT);return}
+function setMode(m,yT,manual){if(manual)rdBack=null;else if(m!=='study')rdAway();// из карточки поверх Библии — на шкалу, карту, родословие
+  if(mode===m){if(yT!=null&&GVIEW(m))goYear(yT);return}
   if(mode==='study')stScroll=document.getElementById('study').scrollTop;
   stBack=m==='study'||manual?false:mode==='study'?true:stBack;
   if(GVIEW(mode))lastY=curYear();const was=mode;mode=m;app.dataset.mode=m;save();drawViews();document.getElementById('dd-view').open=false;
@@ -1652,13 +1653,20 @@ async function showReader(){reader.hidden=false;document.getElementById('rtRu').
   rbody.innerHTML=vs?vs.map((s,i)=>s?`<p id="rv${i+1}" class="${i+1>=a&&i+1<=b&&a?'hl':''}"><sup>${i+1}</sup>${vtext(s)}</p>`:'').join(''):`<p class="en">${T('noText')}</p>`;
   requestAnimationFrame(()=>{const el=a&&document.getElementById('rv'+a);if(el)el.scrollIntoView({block:'center'});else rbody.scrollTop=0});
   try{localStorage.setItem('pc-read',JSON.stringify({bk:RS.bk,c:RS.c}))}catch(_){}}
+// rdBack: Библию убрали переходом (карта, шкала, родословие, другой человек) — на плашке внизу «‹ 2 Пар 20»: та же глава и прокрутка.
+// Остаётся, пока не открыли Библию заново, не закрыли её крестиком или не сменили режим через меню.
+let rdBack=null;
+function rdAway(){if(reader.hidden)return;rdBack={tr:RS.tr,bk:RS.bk,c:RS.c,v:RS.v,v2:RS.v2,top:rbody.scrollTop};reader.hidden=true;drawer.classList.remove('top');updSelChip()}
+function rdReturn(){const b=rdBack;if(!b)return;rdBack=null;RS={tr:b.tr,bk:b.bk,c:b.c,v:b.v,v2:b.v2};drawer.classList.remove('top');
+  showReader().then(()=>requestAnimationFrame(()=>{rbody.scrollTop=b.top}));updSelChip()}
+function rdLabel(b){const k=BK.find(x=>x[2]===b.bk);return (k?(b.tr==='ru'?k[0]:k[1]):b.bk)+' '+b.c}
 // имя в Библии — карточка поверх Библии (закрыли карточку — снова Библия); место — карта
 rbody.addEventListener('click',e=>{const lk=e.target.closest('.lk');if(!lk)return;
   if(lk.dataset.p!=null){const i=+lk.dataset.p;if(P[i]){select(i,{keepReader:true});drawer.classList.add('top')}}
-  else if(lk.dataset.pl!=null){const pi=+lk.dataset.pl;if(PL[pi]){reader.hidden=true;setMode('map',lastY??880);requestAnimationFrame(()=>focusPlace(pi))}}});
-function openReader(bk,c,v,v2){drawer.classList.remove('top');RS={tr:EN()?'en':'ru',bk,c:+c||1,v:+v||null,v2:+v2||null};showReader()}
+  else if(lk.dataset.pl!=null){const pi=+lk.dataset.pl;if(PL[pi]){setMode('map',lastY??880);requestAnimationFrame(()=>focusPlace(pi))}}});
+function openReader(bk,c,v,v2){drawer.classList.remove('top');rdBack=null;RS={tr:EN()?'en':'ru',bk,c:+c||1,v:+v||null,v2:+v2||null};showReader()}
 document.addEventListener('click',e=>{const a=e.target.closest('.vref');if(!a)return;e.preventDefault();e.stopPropagation();openReader(a.dataset.bk,a.dataset.c,a.dataset.v,a.dataset.v2)});
-document.getElementById('rclose').onclick=()=>reader.hidden=true;
+document.getElementById('rclose').onclick=()=>{reader.hidden=true;rdBack=null;updSelChip()};
 rbook.onchange=()=>{RS.bk=rbook.value;RS.c=1;RS.v=RS.v2=null;showReader()};
 rch.onchange=()=>{RS.c=+rch.value;RS.v=RS.v2=null;showReader()};
 function stepCh(d){const B=BCN[RS.tr];const ks=ROWN(RS.tr);let i=ks.indexOf(RS.bk),c=RS.c+d;
@@ -1669,8 +1677,8 @@ function switchTr(tr){if(RS.tr===tr)return;// псалмы: еврейская �
   if(RS.bk==='PSA'){RS.c=tr==='ru'?psSyn(RS.c):psHeb(RS.c)}RS.tr=tr;showReader()}
 function psHeb(c){c=+c;if(c>=10&&c<=112)return c+1;if(c===9)return 9;if(c===113)return 114;if(c===114||c===115)return 116;if(c>=116&&c<=145)return c+1;if(c===146||c===147)return 147;return c}
 document.getElementById('rtRu').onclick=()=>switchTr('ru');document.getElementById('rtEn').onclick=()=>switchTr('en');
-document.getElementById('bibleBtn').onclick=()=>{let s={bk:'GEN',c:1};try{s=JSON.parse(localStorage.getItem('pc-read')||'null')||s}catch(_){}RS={tr:EN()?'en':'ru',bk:s.bk,c:s.c,v:null,v2:null};showReader()};
-document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!reader.hidden)reader.hidden=true});
+document.getElementById('bibleBtn').onclick=()=>{rdBack=null;let s={bk:'GEN',c:1};try{s=JSON.parse(localStorage.getItem('pc-read')||'null')||s}catch(_){}RS={tr:EN()?'en':'ru',bk:s.bk,c:s.c,v:null,v2:null};showReader()};
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!reader.hidden){reader.hidden=true;rdBack=null;updSelChip()}});
 // ---------- старт
 applyStatic();
 document.getElementById('sub').textContent=subText();
