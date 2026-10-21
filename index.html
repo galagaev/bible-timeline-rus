@@ -501,6 +501,15 @@ svg text{font-family:var(--sans)}
 .app[data-mode="study"] .gantt,.app[data-mode="study"] #dd-groups,.app[data-mode="study"] #dd-cert,.app[data-mode="study"] #dlBtn{display:none}
 .studyctl{display:none;min-width:0}
 .app[data-mode="study"] .studyctl{display:inline-flex;flex:0 1 auto;gap:8px}
+/* режим, квартал, урок и поиск — в одну строку при любой ширине: списки и поиск сжимаются */
+.app[data-mode="study"] .bar-tools{flex-wrap:nowrap}
+.app[data-mode="study"] .studyctl{min-width:0}
+.app[data-mode="study"] .studyctl #stQ{flex:0 1 230px;width:0;min-width:70px}
+.app[data-mode="study"] .studyctl #stSel{flex:1 1 280px;width:0;min-width:90px}
+.app[data-mode="study"] #dd-view{flex:none}
+.app[data-mode="study"] #dd-view summary{white-space:nowrap}
+.app[data-mode="study"] .studyctl{flex:1 1 auto;max-width:640px}
+.app[data-mode="study"] .search{flex:0 1 200px;min-width:110px}
 .studyctl select{font:inherit;font-size:var(--fs-ctl);height:var(--ctl-h,30px);box-sizing:border-box;padding:0 6px;border:var(--bd);border-radius:var(--r);background:var(--surface);color:var(--fg);width:auto;max-width:300px;min-width:0;text-overflow:ellipsis}
 #study{padding:0;border:0;border-radius:0;background:none;scroll-padding-top:56px}   /* без рамки: текст на фоне страницы */
 .st{max-width:700px;margin:0 auto;padding:18px 20px 32px}
@@ -533,9 +542,10 @@ svg text{font-family:var(--sans)}
 .st-msg p{margin:0;max-width:420px}
 .st-msg .spin{width:34px;height:34px;box-sizing:border-box;border-radius:50%;border:3px solid var(--line);border-top-color:var(--fg);animation:spin .8s linear infinite}
 @media (max-width:700px){
-  .app[data-mode="study"] .bar-tools{flex-wrap:wrap}
-  .app[data-mode="study"] .studyctl{flex:1 1 100%;order:3}
-  .studyctl #stQ{flex:0 1 auto;max-width:42%}
+  /* всё в одну строку: режим — только значком, квартал — коротко («IV кв. 2026»), урок занимает остальное */
+  .app[data-mode="study"] #vsum .vtx{display:none}
+  .app[data-mode="study"] .studyctl{flex:1 1 0;min-width:0;gap:6px}
+  .studyctl #stQ{flex:0 0 auto;width:auto;max-width:none}
   .studyctl #stSel{flex:1 1 0;width:0;max-width:none}
   .st{padding:12px 12px 24px}
   .st-day{font-size:18px}
@@ -649,7 +659,7 @@ const P=DATA.P, PL=DATA.PL;
 const L10N={
 /*@ru*/ru:{title:'Библейский таймлайн',sub:(n,m,k)=>`${n} человек и ${m} ${[2,3,4].includes(k%10)&&![12,13,14].includes(k%100)?'события':k%10===1&&k%100!==11?'событие':'событий'} от Адама до наших дней: все, кто назван в Библии, и главные фигуры христианства`,
  byGen:'примерно, по родословию',hlClear:'Сбросить',dlBtn:'Скачать лист',dlTitle:'Скачать лист',dlNote:'В лист попадают группы и точность дат, выбранные на шкале.',dlFrom:'С',dlTo:'по',dlShort:'Скачать',qrTxt:'Откройте сайт на телефоне',dlHint:'нажмите на эпоху или потяните рамку',dlGo:'Скачать PNG',dlPdf:'Скачать PDF',cookieTxt:'Этот сайт использует cookies',cookieOk:'Понятно',pageLoading:'Загрузка…',rtSyn:'СИН',dMin:'Свернуть карточку',selOpen:'Открыть карточку',tFold:'Свернуть ветку (Shift — со всеми внутренними)',tUnfold:'Развернуть ветку (Shift — целиком)',tAround:'Вокруг человека',tLine:'Линия',tCenter:'В центре',tByTribe:'Колена',tByGroup:'Группы',tShowTl:'Показать на шкале',tSpouse:'супруг(а)',tMother:'мать',tApprox:'годы примерно',tNoTribe:'колено неизвестно',family:'Родословие',
- mode:'Режим',timeline:'Таймлайн',map:'Карта',para:'Парадоксы времени',study:'Субботняя школа',stQuarter:'квартал',stQPick:'Выбрать квартал',stBack:'К уроку',stBackT:'Вернуться в урок, к тому же месту',studyLesson:'Урок',studyPick:'Выбрать урок',studyIntro:'Введение',studyVerses:'Библейские стихи для исследования:',studyMemory:'Памятный стих:',studyPrev:'Предыдущий день',studyNext:'Следующий день',studySoon:'Уроки субботней школы на английском языке появятся позже.',studyErr:'Не удалось загрузить уроки. Проверьте соединение и откройте раздел ещё раз.',studyHint:'Подчёркнутые имена, события и места открывают карточку или карту, ссылки на стихи — Библию.',tree:'Родословие',randomP:'Случайный парадокс',paraIntro:'Сравнения отрезков времени. Числа посчитаны по датам этой шкалы.',treeSoon:'Родословие появится здесь: древо выбранного человека — предки, потомки, братья и сёстры, раскрашенные по коленам.',mw:'Тем временем',mwW0:'этот год',mwW:n=>`±${n} лет`,mwNone:'В эти годы во включённых группах ничего нет.',mwBack:'← Тем временем',prevY:'Раньше',nextY:'Позже',nYrs:n=>{const a=Math.abs(n)%100,b=a%10;return n+' '+(a>10&&a<20?'лет':b===1?'год':b>=2&&b<=4?'года':'лет')},groups:'Группы',certs:'Точность дат',groupsN:(n,m)=>`Группы: ${n} из ${m}`,certsAll:'Точность дат: все',certsN:c=>`Точность дат: ${c} из 3`,datesShort:'Даты',
+ mode:'Режим',timeline:'Таймлайн',map:'Карта',para:'Парадоксы времени',study:'Субботняя школа',stQuarter:'квартал',stQShort:'кв.',stQPick:'Выбрать квартал',stBack:'К уроку',stBackT:'Вернуться в урок, к тому же месту',studyLesson:'Урок',studyPick:'Выбрать урок',studyIntro:'Введение',studyVerses:'Библейские стихи для исследования:',studyMemory:'Памятный стих:',studyPrev:'Предыдущий день',studyNext:'Следующий день',studySoon:'Уроки субботней школы на английском языке появятся позже.',studyErr:'Не удалось загрузить уроки. Проверьте соединение и откройте раздел ещё раз.',studyHint:'Подчёркнутые имена, события и места открывают карточку или карту, ссылки на стихи — Библию.',tree:'Родословие',randomP:'Случайный парадокс',paraIntro:'Сравнения отрезков времени. Числа посчитаны по датам этой шкалы.',treeSoon:'Родословие появится здесь: древо выбранного человека — предки, потомки, братья и сёстры, раскрашенные по коленам.',mw:'Тем временем',mwW0:'этот год',mwW:n=>`±${n} лет`,mwNone:'В эти годы во включённых группах ничего нет.',mwBack:'← Тем временем',prevY:'Раньше',nextY:'Позже',nYrs:n=>{const a=Math.abs(n)%100,b=a%10;return n+' '+(a>10&&a<20?'лет':b===1?'год':b>=2&&b<=4?'года':'лет')},groups:'Группы',certs:'Точность дат',groupsN:(n,m)=>`Группы: ${n} из ${m}`,certsAll:'Точность дат: все',certsN:c=>`Точность дат: ${c} из 3`,datesShort:'Даты',
  searchPh:'Найти человека или событие: Иеремия, Исход, Павел…',searchAria:'Поиск по именам',search:'Поиск',noMatch:'Никого не нашлось',undated:'без даты',
  mapAria:'Карта мест, где упоминаются люди выбранного времени',v_canaan:'Ханаан',v_east:'Ближний Восток',v_med:'Средиземноморье',v_europe:'Европа',v_world:'Мир',places:'Города и места',states:'Государства',
  zoomIn:'Крупнее',zoomOut:'Мельче',card:'Карточка человека',close:'Закрыть',info:'О странице, легенда и источники',themeDark:'Тёмная тема',themeLight:'Светлая тема',langBtn:'EN',langTitle:'English version',
@@ -669,7 +679,7 @@ const L10N={
  bc:'до н. э.',ad:'н. э.',tick10bc:'10 до н. э.',tick10ad:'10 н. э.'},/*@/ru*/
 en:{title:'Bible Timeline',sub:(n,m)=>`${n} people and ${m} events, from Adam to the present day: everyone named in the Bible, and key figures of Christianity`,
  byGen:'approximate, from the genealogy',hlClear:'Clear',dlBtn:'Download sheet',dlTitle:'Download sheet',dlNote:'The sheet shows the groups and date certainty selected on the timeline.',dlFrom:'From',dlTo:'to',dlShort:'Download',qrTxt:'Open the site on your phone',dlHint:'click an era or drag the frame',dlGo:'Download PNG',dlPdf:'Download PDF',cookieTxt:'This site uses cookies',cookieOk:'OK',pageLoading:'Loading…',rtSyn:/*@ru*/'СИН'||/*@/ru*/'',dMin:'Minimise card',selOpen:'Open card',tFold:'Collapse branch (Shift — all levels)',tUnfold:'Expand branch (Shift — all levels)',tAround:'Around a person',tLine:'Line',tCenter:'Centre',tByTribe:'Tribes',tByGroup:'Groups',tShowTl:'Show on timeline',tSpouse:'spouse',tMother:'mother',tApprox:'approximate years',tNoTribe:'tribe unknown',family:'Family tree',
- mode:'Mode',timeline:'Timeline',map:'Map',para:'Paradoxes of time',study:'Sabbath School',stQuarter:'quarter',stQPick:'Choose a quarter',stBack:'Back to lesson',stBackT:'Return to the lesson, at the same place',studyLesson:'Lesson',studyPick:'Choose a lesson',studyIntro:'Introduction',studyVerses:'Bible texts for study:',studyMemory:'Memory text:',studyPrev:'Previous day',studyNext:'Next day',studySoon:'Sabbath School lessons in English will appear later.',studyErr:'Could not load the lessons. Check the connection and open the section again.',studyHint:'Underlined names, events and places open a card or the map; verse references open the Bible.',tree:'Family tree',randomP:'Random paradox',paraIntro:'Comparisons of spans of time. The numbers come from this timeline’s dates.',treeSoon:'The family tree will appear here: ancestors, descendants and siblings of the selected person, coloured by tribe.',mw:'Meanwhile',mwW0:'this year',mwW:n=>`±${n} years`,mwNone:'Nothing in the enabled groups for these years.',mwBack:'← Meanwhile',prevY:'Earlier',nextY:'Later',nYrs:n=>n+(Math.abs(n)===1?' year':' years'),groups:'Groups',certs:'Date certainty',groupsN:(n,m)=>`Groups: ${n} of ${m}`,certsAll:'Date certainty: all',certsN:c=>`Date certainty: ${c} of 3`,datesShort:'Dates',
+ mode:'Mode',timeline:'Timeline',map:'Map',para:'Paradoxes of time',study:'Sabbath School',stQuarter:'quarter',stQShort:'q.',stQPick:'Choose a quarter',stBack:'Back to lesson',stBackT:'Return to the lesson, at the same place',studyLesson:'Lesson',studyPick:'Choose a lesson',studyIntro:'Introduction',studyVerses:'Bible texts for study:',studyMemory:'Memory text:',studyPrev:'Previous day',studyNext:'Next day',studySoon:'Sabbath School lessons in English will appear later.',studyErr:'Could not load the lessons. Check the connection and open the section again.',studyHint:'Underlined names, events and places open a card or the map; verse references open the Bible.',tree:'Family tree',randomP:'Random paradox',paraIntro:'Comparisons of spans of time. The numbers come from this timeline’s dates.',treeSoon:'The family tree will appear here: ancestors, descendants and siblings of the selected person, coloured by tribe.',mw:'Meanwhile',mwW0:'this year',mwW:n=>`±${n} years`,mwNone:'Nothing in the enabled groups for these years.',mwBack:'← Meanwhile',prevY:'Earlier',nextY:'Later',nYrs:n=>n+(Math.abs(n)===1?' year':' years'),groups:'Groups',certs:'Date certainty',groupsN:(n,m)=>`Groups: ${n} of ${m}`,certsAll:'Date certainty: all',certsN:c=>`Date certainty: ${c} of 3`,datesShort:'Dates',
  searchPh:'Find a person or event: Jeremiah, Exodus, Paul…',searchAria:'Search by name',search:'Search',noMatch:'No matches',undated:'undated',
  mapAria:'Map of places where people of the selected time are mentioned',v_canaan:'Canaan',v_east:'Near East',v_med:'Mediterranean',v_europe:'Europe',v_world:'World',places:'Places',states:'States',
  zoomIn:'Zoom in',zoomOut:'Zoom out',card:'Person card',close:'Close',info:'About, legend and sources',themeDark:'Dark theme',themeLight:'Light theme',/*@ru*/langBtn:'RU',langTitle:'Русская версия',/*@/ru*/
@@ -1046,7 +1056,7 @@ const IC_TL=SV(12,'<path d="M1 2.5h6M4 6h7M2.5 9.5h5"/>'),
  IC_STUDY=SV(12,'<path d="M6 3C4.6 1.9 2.8 1.7 1 1.9v7.7c1.8-.2 3.6 0 5 1.2 1.4-1.2 3.2-1.4 5-1.2V1.9C9.2 1.7 7.4 1.9 6 3zM6 3v7.8"/>'),
  IC_TREE=SV(12,'<circle cx="6" cy="2.2" r="1.4"/><circle cx="2.2" cy="9.8" r="1.4"/><circle cx="9.8" cy="9.8" r="1.4"/><path d="M6 3.6V6M2.2 8.4V6h7.6v2.4"/>');
 const VIEWS_L=[['timeline',IC_TL],['map',PIN],['para',IC_PARA],['tree',IC_TREE],['study',IC_STUDY]];
-function drawViews(){const ic=(VIEWS_L.find(v=>v[0]===mode)||['',''])[1];document.getElementById('vsum').innerHTML=`<span class="vic" aria-hidden="true">${ic}</span>${esc(T(mode))}`;
+function drawViews(){const ic=(VIEWS_L.find(v=>v[0]===mode)||['',''])[1];document.getElementById('vsum').innerHTML=`<span class="vic" aria-hidden="true">${ic}</span><span class="vtx">${esc(T(mode))}</span>`;
   const el=document.getElementById('views');el.innerHTML=VIEWS_L.map(([k,ic])=>`<button type="button" data-v="${k}" aria-current="${mode===k}"><span class="vic" aria-hidden="true">${ic}</span>${esc(T(k))}</button>`).join('');
   el.querySelectorAll('[data-v]').forEach(b=>b.onclick=()=>setMode(b.dataset.v,null,true))}
 function curYear(){return XI(gbody.scrollLeft+gbody.clientWidth/2)}
@@ -1389,7 +1399,8 @@ function loadLessons(l,q){const k=l+'-'+q.id;if(!LESLOAD[k]){LESLOAD[k]=fetchGz(
 // квартал по умолчанию: тот, что идёт сейчас, иначе последний
 function stQuarter(qs){const iso=stIso();return (qs.find(q=>q.id===ST.q)||qs.find(q=>q.s<=iso&&iso<=q.e)||qs[qs.length-1])}
 const ROMAN=['I','II','III','IV'];
-const stQLabel=q=>{const [y,n]=q.id.split('-');return (EN()?`Q${n} ${y}`:`${ROMAN[n-1]||n} ${T('stQuarter')} ${y}`)+' · '+q.t};
+const stQLabel=(q,short)=>{const [y,n]=q.id.split('-');return short?(EN()?`Q${n} ${y}`:`${ROMAN[n-1]||n} ${T('stQShort')} ${y}`):(EN()?`Q${n} ${y}`:`${ROMAN[n-1]||n} ${T('stQuarter')} ${y}`)+' · '+q.t};
+MOB.addEventListener?.('change',()=>{if(mode==='study')drawStudy()});// на телефоне — короткие подписи, чтобы всё влезло в одну строку
 // урок и день по сегодняшней дате: неделя урока — с субботы по пятницу
 function stToday(Q){const t=new Date(),iso=stIso();
   const ls=Q.lessons;let l=ls.findIndex(L=>L.start<=iso&&iso<=L.end);
@@ -1406,7 +1417,7 @@ function stBlocks(bs){let h='',ol=false;
 function drawStudy(){const box=document.getElementById('study'),ctl=document.getElementById('studyCtl'),qs=STQ[LANG]||[];
   if(!qs.length){ctl.innerHTML='';box.innerHTML=`<div class="st-msg"><p>${esc(T('studySoon'))}</p></div>`;return}
   const q=stQuarter(qs),Q=LES[LANG+'-'+q.id];
-  const qsel=`<select id="stQ" aria-label="${esc(T('stQPick'))}" title="${esc(T('stQPick'))}">${qs.map(x=>`<option value="${esc(x.id)}"${x.id===q.id?' selected':''}>${esc(stQLabel(x))}</option>`).join('')}</select>`;
+  const qsel=`<select id="stQ" aria-label="${esc(T('stQPick'))}" title="${esc(T('stQPick'))}">${qs.map(x=>`<option value="${esc(x.id)}"${x.id===q.id?' selected':''} title="${esc(stQLabel(x))}">${esc(stQLabel(x,MOB.matches))}</option>`).join('')}</select>`;
   const bindQ=()=>{document.getElementById('stQ').onchange=e=>{ST={q:e.target.value};stSave();drawStudy();box.scrollTop=0}};
   if(!Q){ctl.innerHTML=qsel;bindQ();box.innerHTML=`<div class="st-msg" role="status"><div class="spin" aria-hidden="true"></div><p>${esc(T('pageLoading'))}</p></div>`;
     loadLessons(LANG,q).then(()=>{if(mode==='study')drawStudy()},()=>{if(mode==='study'&&!LES[LANG+'-'+q.id])box.innerHTML=`<div class="st-msg"><p>${esc(T('studyErr'))}</p></div>`});return}
