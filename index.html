@@ -444,6 +444,7 @@ svg text{font-family:var(--sans)}
   .drawer{top:auto;width:100%;height:72%;border-left:0;border-top:1px solid var(--line);border-radius:12px 12px 0 0;padding-left:env(safe-area-inset-left,0px)}
 }
 /* Чтение Библии */
+.drawer.top{z-index:56}   /* карточка, открытая из Библии, — поверх неё */
 .reader{z-index:55;width:min(480px,100%)}
 .rbar{display:flex;flex-wrap:wrap;gap:6px;align-items:center;padding:0 16px 8px;border-bottom:1px solid var(--line)}
 .rbar select{font:inherit;font-size:14px;padding:3px 6px;border:var(--bd);border-radius:var(--r);background:var(--surface);color:var(--fg);max-width:46%}
@@ -533,8 +534,8 @@ svg text{font-family:var(--sans)}
 .st-tw{overflow-x:auto;margin:0 0 1em}
 .st-tbl{border-collapse:collapse;font-size:16px;line-height:1.4}
 .st-tbl td{border:var(--bd);padding:6px 8px;vertical-align:top}
-.st .lk{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer;text-decoration:underline dotted var(--muted);text-decoration-thickness:1px;text-underline-offset:3px}
-.st .lk:hover{text-decoration-style:solid;text-decoration-color:var(--fg)}
+.st .lk,.reader .lk{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer;text-decoration:underline dotted var(--muted);text-decoration-thickness:1px;text-underline-offset:3px}
+.st .lk:hover,.reader .lk:hover{text-decoration-style:solid;text-decoration-color:var(--fg)}
 .st-nav{display:flex;justify-content:space-between;gap:10px;margin-top:22px}
 .st-hint{font:12.5px/1.45 var(--display);color:var(--muted);margin:22px 0 0;padding-top:12px;border-top:var(--bd)}
 .st-msg{height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;color:var(--muted);font-family:var(--display);font-size:15px;text-align:center;padding:24px}
@@ -958,7 +959,7 @@ function markSel(){const band=gbody.querySelector('#selband'),rg=gbody.querySele
   if(!rg)return;// тонкие связи к отцу, матери и детям, если они видны на шкале
   const p=o.p,ids=[...rel(p,'fa'),...rel(p,'mo'),...rel(p,'ch')];let h='';const x1=X(p.ls??p.s),y1=o.y+BH/2;
   ids.forEach(i=>{const q=placed.find(z=>z.p.i===i);if(!q)return;const x2=X(q.p.ls??q.p.s),y2=q.y+BH/2,xv=Math.min(x1,x2)-8;h+=`<path class="rel" d="M${x1},${y1}H${xv}V${y2}H${x2}"/>`});rg.innerHTML=h}
-function select(i,opts={}){{const rd=document.getElementById('reader');if(rd&&!rd.hidden)rd.hidden=true}// карточка не должна оказаться под открытой Библией
+function select(i,opts={}){if(!opts.keepReader){const rd=document.getElementById('reader');if(rd&&!rd.hidden)rd.hidden=true;drawer.classList.remove('top')}// карточка не должна оказаться под открытой Библией
   if(PHL||(LHL&&!LHL.has(i))){PHL=null;LHL=null;layout()}sel=i;const p=P[i];if(mode!=='tree'&&p.s!=null&&p.g!=='tev'&&!visible(p)){on[p.g]=true;certOn[certOf(p)]=true;save();drawGroups();layout()}else{document.querySelectorAll('.pb.sel').forEach(g=>g.classList.remove('sel'));const g=gbody.querySelector(`.pb[data-i="${i}"]`);if(g)g.classList.add('sel');markSel()}
   openDrawer(p);if(opts.scroll)scrollToPerson(p,true);if(mode==='map')updateMap();}
 
@@ -1636,7 +1637,9 @@ const reader=document.getElementById('reader'),rbody=document.getElementById('rb
 let RS={tr:'ru',bk:'GEN',c:1,v:null,v2:null};
 const ROWN=tr=>Object.keys(BFULL[tr]);
 function bookOpts(){const tr=RS.tr;rbook.innerHTML=ROWN(tr).map(k=>`<option value="${k}">${esc(BFULL[tr][k])}</option>`).join('');rbook.value=RS.bk}
-function vtext(s){return esc(s).replace(/⟨(.*?)⟩/g,'<span class="nt"> [$1]</span>').replace(/\[(.*?)\]/g,'<i>$1</i>')}
+// ⟦p12|Давида⟧ — человек (карточка), ⟦l34|Иерусалим⟧ — место (карта): разметка ставится при сборке по данным Theographic
+function vtext(s){return esc(s).replace(/⟨(.*?)⟩/g,'<span class="nt"> [$1]</span>').replace(/\[(.*?)\]/g,'<i>$1</i>')
+  .replace(/⟦([pl])(\d+)\|(.*?)⟧/g,(_,k,i,w)=>k==='p'?`<button type="button" class="lk lkp" data-p="${i}">${w}</button>`:`<button type="button" class="lk lkl" data-pl="${i}">${w}</button>`)}
 let showTok=0;
 async function showReader(){reader.hidden=false;document.getElementById('rtRu').setAttribute('aria-pressed',RS.tr==='ru');document.getElementById('rtEn').setAttribute('aria-pressed',RS.tr==='en');
   bookOpts();const ttl=document.getElementById('rtitle');
@@ -1649,7 +1652,11 @@ async function showReader(){reader.hidden=false;document.getElementById('rtRu').
   rbody.innerHTML=vs?vs.map((s,i)=>s?`<p id="rv${i+1}" class="${i+1>=a&&i+1<=b&&a?'hl':''}"><sup>${i+1}</sup>${vtext(s)}</p>`:'').join(''):`<p class="en">${T('noText')}</p>`;
   requestAnimationFrame(()=>{const el=a&&document.getElementById('rv'+a);if(el)el.scrollIntoView({block:'center'});else rbody.scrollTop=0});
   try{localStorage.setItem('pc-read',JSON.stringify({bk:RS.bk,c:RS.c}))}catch(_){}}
-function openReader(bk,c,v,v2){RS={tr:EN()?'en':'ru',bk,c:+c||1,v:+v||null,v2:+v2||null};showReader()}
+// имя в Библии — карточка поверх Библии (закрыли карточку — снова Библия); место — карта
+rbody.addEventListener('click',e=>{const lk=e.target.closest('.lk');if(!lk)return;
+  if(lk.dataset.p!=null){const i=+lk.dataset.p;if(P[i]){select(i,{keepReader:true});drawer.classList.add('top')}}
+  else if(lk.dataset.pl!=null){const pi=+lk.dataset.pl;if(PL[pi]){reader.hidden=true;setMode('map',lastY??880);requestAnimationFrame(()=>focusPlace(pi))}}});
+function openReader(bk,c,v,v2){drawer.classList.remove('top');RS={tr:EN()?'en':'ru',bk,c:+c||1,v:+v||null,v2:+v2||null};showReader()}
 document.addEventListener('click',e=>{const a=e.target.closest('.vref');if(!a)return;e.preventDefault();e.stopPropagation();openReader(a.dataset.bk,a.dataset.c,a.dataset.v,a.dataset.v2)});
 document.getElementById('rclose').onclick=()=>reader.hidden=true;
 rbook.onchange=()=>{RS.bk=rbook.value;RS.c=1;RS.v=RS.v2=null;showReader()};
