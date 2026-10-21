@@ -455,8 +455,7 @@ svg text{font-family:var(--sans)}
 /* Скачать лист: кнопка в панели и окно с предпросмотром */
 .dlb{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:0 10px;height:28px;box-sizing:border-box;flex:0 0 auto}
 .dlb svg{flex:0 0 auto}
-.app[data-mode="para"] #dlBtn{display:none}
-.dlctl[hidden]{display:none}
+.app[data-mode="para"] #dlBtn,.app[data-mode="map"] #dlBtn{display:none}   /* скачивание — только шкала (Таймлайн и Родословие) */
 .dlg{position:fixed;inset:0;z-index:70;background:rgba(0,0,0,.35);display:flex;align-items:center;justify-content:center;padding:16px}
 .dlg[hidden]{display:none}
 .dlbox{background:var(--surface);border:var(--bd);border-radius:var(--r-lg);box-shadow:var(--sh-pop);width:min(1100px,100%);max-height:100%;display:flex;flex-direction:column;gap:12px;padding:14px 16px;box-sizing:border-box}
@@ -596,7 +595,7 @@ const P=DATA.P, PL=DATA.PL;
 // ---------- язык интерфейса
 const L10N={
 /*@ru*/ru:{title:'Библейский таймлайн',sub:(n,m,k)=>`${n} человек и ${m} ${[2,3,4].includes(k%10)&&![12,13,14].includes(k%100)?'события':k%10===1&&k%100!==11?'событие':'событий'} от Адама до наших дней: все, кто назван в Библии, и главные фигуры христианства`,
- byGen:'примерно, по родословию',hlClear:'Сбросить',dlBtn:'Скачать лист',dlTitle:'Скачать лист',dlNote:'В лист попадают группы и точность дат, выбранные на шкале.',dlFrom:'С',dlTo:'по',dlShort:'Скачать',qrTxt:'Откройте сайт на телефоне',dlHint:'нажмите на эпоху или потяните рамку',dlGo:'Скачать PNG',dlPdf:'Скачать PDF',dlMapTitle:'Скачать карту',dlMapNote:'Карта сохраняется так, как она видна сейчас: год, масштаб и слои.',cookieTxt:'Этот сайт использует cookies',cookieOk:'Понятно',pageLoading:'Загрузка…',rtSyn:'СИН',dMin:'Свернуть карточку',selOpen:'Открыть карточку',tFold:'Свернуть ветку (Shift — со всеми внутренними)',tUnfold:'Развернуть ветку (Shift — целиком)',tAround:'Вокруг человека',tLine:'Линия',tCenter:'В центре',tByTribe:'Колена',tByGroup:'Группы',tShowTl:'Показать на шкале',tSpouse:'супруг(а)',tMother:'мать',tApprox:'годы примерно',tNoTribe:'колено неизвестно',family:'Родословие',
+ byGen:'примерно, по родословию',hlClear:'Сбросить',dlBtn:'Скачать лист',dlTitle:'Скачать лист',dlNote:'В лист попадают группы и точность дат, выбранные на шкале.',dlFrom:'С',dlTo:'по',dlShort:'Скачать',qrTxt:'Откройте сайт на телефоне',dlHint:'нажмите на эпоху или потяните рамку',dlGo:'Скачать PNG',dlPdf:'Скачать PDF',cookieTxt:'Этот сайт использует cookies',cookieOk:'Понятно',pageLoading:'Загрузка…',rtSyn:'СИН',dMin:'Свернуть карточку',selOpen:'Открыть карточку',tFold:'Свернуть ветку (Shift — со всеми внутренними)',tUnfold:'Развернуть ветку (Shift — целиком)',tAround:'Вокруг человека',tLine:'Линия',tCenter:'В центре',tByTribe:'Колена',tByGroup:'Группы',tShowTl:'Показать на шкале',tSpouse:'супруг(а)',tMother:'мать',tApprox:'годы примерно',tNoTribe:'колено неизвестно',family:'Родословие',
  mode:'Режим',timeline:'Таймлайн',map:'Карта',para:'Парадоксы времени',tree:'Родословие',randomP:'Случайный парадокс',paraIntro:'Сравнения отрезков времени. Числа посчитаны по датам этой шкалы.',treeSoon:'Родословие появится здесь: древо выбранного человека — предки, потомки, братья и сёстры, раскрашенные по коленам.',mw:'Тем временем',mwW0:'этот год',mwW:n=>`±${n} лет`,mwNone:'В эти годы во включённых группах ничего нет.',mwBack:'← Тем временем',prevY:'Раньше',nextY:'Позже',nYrs:n=>{const a=Math.abs(n)%100,b=a%10;return n+' '+(a>10&&a<20?'лет':b===1?'год':b>=2&&b<=4?'года':'лет')},groups:'Группы',certs:'Точность дат',groupsN:(n,m)=>`Группы: ${n} из ${m}`,certsAll:'Точность дат: все',certsN:c=>`Точность дат: ${c} из 3`,datesShort:'Даты',
  searchPh:'Найти человека или событие: Иеремия, Исход, Павел…',searchAria:'Поиск по именам',search:'Поиск',noMatch:'Никого не нашлось',undated:'без даты',
  mapAria:'Карта мест, где упоминаются люди выбранного времени',v_canaan:'Ханаан',v_east:'Ближний Восток',v_med:'Средиземноморье',v_europe:'Европа',v_world:'Мир',places:'Города и места',states:'Государства',
@@ -616,7 +615,7 @@ const L10N={
  yrs:n=>n%10===1&&n%100!==11?'год':[2,3,4].includes(n%10)&&![12,13,14].includes(n%100)?'года':'лет',
  bc:'до н. э.',ad:'н. э.',tick10bc:'10 до н. э.',tick10ad:'10 н. э.'},/*@/ru*/
 en:{title:'Bible Timeline',sub:(n,m)=>`${n} people and ${m} events, from Adam to the present day: everyone named in the Bible, and key figures of Christianity`,
- byGen:'approximate, from the genealogy',hlClear:'Clear',dlBtn:'Download sheet',dlTitle:'Download sheet',dlNote:'The sheet shows the groups and date certainty selected on the timeline.',dlFrom:'From',dlTo:'to',dlShort:'Download',qrTxt:'Open the site on your phone',dlHint:'click an era or drag the frame',dlGo:'Download PNG',dlPdf:'Download PDF',dlMapTitle:'Download map',dlMapNote:'The map is saved as it is shown now: year, zoom and layers.',cookieTxt:'This site uses cookies',cookieOk:'OK',pageLoading:'Loading…',rtSyn:/*@ru*/'СИН'||/*@/ru*/'',dMin:'Minimise card',selOpen:'Open card',tFold:'Collapse branch (Shift — all levels)',tUnfold:'Expand branch (Shift — all levels)',tAround:'Around a person',tLine:'Line',tCenter:'Centre',tByTribe:'Tribes',tByGroup:'Groups',tShowTl:'Show on timeline',tSpouse:'spouse',tMother:'mother',tApprox:'approximate years',tNoTribe:'tribe unknown',family:'Family tree',
+ byGen:'approximate, from the genealogy',hlClear:'Clear',dlBtn:'Download sheet',dlTitle:'Download sheet',dlNote:'The sheet shows the groups and date certainty selected on the timeline.',dlFrom:'From',dlTo:'to',dlShort:'Download',qrTxt:'Open the site on your phone',dlHint:'click an era or drag the frame',dlGo:'Download PNG',dlPdf:'Download PDF',cookieTxt:'This site uses cookies',cookieOk:'OK',pageLoading:'Loading…',rtSyn:/*@ru*/'СИН'||/*@/ru*/'',dMin:'Minimise card',selOpen:'Open card',tFold:'Collapse branch (Shift — all levels)',tUnfold:'Expand branch (Shift — all levels)',tAround:'Around a person',tLine:'Line',tCenter:'Centre',tByTribe:'Tribes',tByGroup:'Groups',tShowTl:'Show on timeline',tSpouse:'spouse',tMother:'mother',tApprox:'approximate years',tNoTribe:'tribe unknown',family:'Family tree',
  mode:'Mode',timeline:'Timeline',map:'Map',para:'Paradoxes of time',tree:'Family tree',randomP:'Random paradox',paraIntro:'Comparisons of spans of time. The numbers come from this timeline’s dates.',treeSoon:'The family tree will appear here: ancestors, descendants and siblings of the selected person, coloured by tribe.',mw:'Meanwhile',mwW0:'this year',mwW:n=>`±${n} years`,mwNone:'Nothing in the enabled groups for these years.',mwBack:'← Meanwhile',prevY:'Earlier',nextY:'Later',nYrs:n=>n+(Math.abs(n)===1?' year':' years'),groups:'Groups',certs:'Date certainty',groupsN:(n,m)=>`Groups: ${n} of ${m}`,certsAll:'Date certainty: all',certsN:c=>`Date certainty: ${c} of 3`,datesShort:'Dates',
  searchPh:'Find a person or event: Jeremiah, Exodus, Paul…',searchAria:'Search by name',search:'Search',noMatch:'No matches',undated:'undated',
  mapAria:'Map of places where people of the selected time are mentioned',v_canaan:'Canaan',v_east:'Near East',v_med:'Mediterranean',v_europe:'Europe',v_world:'World',places:'Places',states:'States',
@@ -1413,12 +1412,6 @@ function sheetSVG(a,b){
   ZOOM=keep.ZOOM;buildScale();OFF=keep.OFF;VW=keep.VW;placed=keep.placed;ROWS=keep.ROWS;H=keep.H;TLINKS=keep.TLINKS;VIEW=keep.VIEW;
   gbody.scrollLeft=sx;gbody.scrollTop=sy;
   return {svg,w:SW,h:SH};}
-// лист карты: карта так, как она видна сейчас (год, масштаб, слои)
-function mapSheetSVG(){const el=document.getElementById('map'),mw2=el.clientWidth||1000,mh2=el.clientHeight||600,M=SHEET_M,k=SHEET_W/mw2,cw=SHEET_W,ch=Math.round(mh2*k);
-  const head=56,foot=QR()?84:30,SW=cw+2*M,SH=head+ch+foot,y=curYear();
-  const inner=`<defs><clipPath id="dlm"><rect width="${cw}" height="${ch}" rx="6"/></clipPath></defs><g transform="translate(${M},${head})" clip-path="url(#dlm)"><rect width="${cw}" height="${ch}" style="fill:var(--sea)"/>`+
-    `<svg width="${cw}" height="${ch}" viewBox="0 0 ${mw2} ${mh2}">${el.innerHTML}</svg></g><rect x="${M}" y="${head}" width="${cw}" height="${ch}" rx="6" style="fill:none;stroke:var(--line)"/>`;
-  return {svg:sheetFrame(SW,SH,foot,(T('map')+(y!=null?' · '+fy1(Math.round(y)):'')),inner),w:SW,h:SH}}
 // шрифты сайта встраиваются в картинку (иначе в ней системные); если загрузить не удалось — системные
 function loadSheetFonts(){if(DL.fontsP)return DL.fontsP;
   DL.fontsP=(async()=>{const link=document.querySelector('link[href*="fonts.googleapis.com/css"]');if(!link)return '';
@@ -1473,19 +1466,18 @@ function dlMini(){const W=dlM.clientWidth||600,Hm=46,px=y=>dlT(y)/1000*W,xa=px(D
      if(lastEra)dlSet(Math.max(a,lastEra[0]),Math.min(b,lastEra[1]));else dlSet(a,b);lastEra=lastEra?null:[a,b];return}
    if(d.moved)dlPreview()});
  addEventListener('resize',()=>{if(!dlDlg.hidden)dlMini()});}
-function dlBuild(){return DL.kind==='map'?mapSheetSVG():sheetSVG(DL.a,DL.b)}
+function dlBuild(){return sheetSVG(DL.a,DL.b)}
 function dlPreview(){const tok=++DL.tok;clearTimeout(DL.tm);DL.tm=setTimeout(()=>{if(tok!==DL.tok)return;DL.s=dlBuild();dlImg.src=sheetURL(DL.s);
-  if(DL.kind!=='map')document.getElementById('dlRng').textContent=fy(DL.a,DL.b)},120)}
+  document.getElementById('dlRng').textContent=fy(DL.a,DL.b)},120)}
 function dlSet(a,b,quiet){if(a<b)[a,b]=[b,a];if(a-b<10)b=a-10;DL.a=Math.min(4200,a);DL.b=Math.max(-2030,b);dlFill();document.getElementById('dlRng').textContent=fy(DL.a,DL.b);if(!quiet)dlPreview()}
-function openDL(){DL.kind=mode==='map'?'map':'tl';let a=null,b=null;// по умолчанию — отрезок, который сейчас на экране (в режиме карты — без пустых полей по краям)
+function openDL(){let a=null,b=null;// по умолчанию — отрезок, который сейчас на экране (в режиме карты — без пустых полей по краям)
   if(gbody.clientWidth>0){a=XI(Math.max(gbody.scrollLeft+8,OFF+PAD));b=XI(Math.min(gbody.scrollLeft+gbody.clientWidth-8,OFF+TW-PAD-RPAD))}
   else{a=1050;b=586}
   if(a==null)a=b!=null&&b<10?10:400;if(b==null)b=a>400?400:-100;
   dlDraw();dlDlg.hidden=false;
-  if(DL.kind==='map'){const y=curYear();document.getElementById('dlRng').textContent=y!=null?fy1(Math.round(y)):'';dlPreview()}else requestAnimationFrame(()=>dlSet(dlRound(a),dlRound(b)));
+  requestAnimationFrame(()=>dlSet(dlRound(a),dlRound(b)));
   if(DL.fonts===undefined)loadSheetFonts().then(()=>{if(!dlDlg.hidden)dlPreview()})}
-function dlDraw(){const map=DL.kind==='map';document.getElementById('dlTtl').textContent=T(map?'dlMapTitle':'dlTitle');document.getElementById('dlNote').textContent=T(map?'dlMapNote':'dlNote');
-  document.querySelector('.dlctl').hidden=map;document.getElementById('dlPdf').textContent=T('dlPdf');
+function dlDraw(){document.getElementById('dlTtl').textContent=T('dlTitle');document.getElementById('dlNote').textContent=T('dlNote');document.getElementById('dlPdf').textContent=T('dlPdf');
   document.getElementById('dlaL').textContent=T('dlFrom');document.getElementById('dlbL').textContent=T('dlTo');document.getElementById('dlHint').textContent=T('dlHint');document.getElementById('dlGo').textContent=T('dlGo');
   for(const k of ['a','b'])document.getElementById('dl'+k+'E').innerHTML=`<option value="bc">${esc(T('bc'))}</option><option value="ad">${esc(T('ad'))}</option>`}
 for(const k of ['a','b']){
@@ -1499,7 +1491,7 @@ document.getElementById('dlBtn').onclick=openDL;
 async function dlSave(name,blob){const dl=window.claude&&window.claude.use?await window.claude.use('downloads').catch(()=>null):null;
   if(dl){dl.save({filename:name,data:blob}).catch(()=>{});return}
   const u=URL.createObjectURL(blob),l=document.createElement('a');l.href=u;l.download=name;document.body.appendChild(l);l.click();l.remove();setTimeout(()=>URL.revokeObjectURL(u),4000)}
-function dlName(ext){const yy=y=>y>0?y+'BC':'AD'+(-y);if(DL.kind==='map'){const y=curYear();return `bible-map${y!=null?'_'+yy(Math.round(y)):''}.${ext}`}return `bible-timeline_${yy(DL.a)}-${yy(DL.b)}.${ext}`}
+function dlName(ext){const yy=y=>y>0?y+'BC':'AD'+(-y);return `bible-timeline_${yy(DL.a)}-${yy(DL.b)}.${ext}`}
 function dlRender(pdf){const s=DL.s||dlBuild(),img=new Image();
   img.onload=()=>{const k=Math.min(3508/s.w,16000/s.h),c=document.createElement('canvas');c.width=Math.round(s.w*k);c.height=Math.round(s.h*k);
     const g=c.getContext('2d');g.fillStyle='#fff';g.fillRect(0,0,c.width,c.height);g.drawImage(img,0,0,c.width,c.height);
