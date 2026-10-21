@@ -566,7 +566,7 @@ en:{title:'Bible Timeline',sub:(n,m)=>`${n} people and ${m} events, from Adam to
  bc:'BC',ad:'AD',tick10bc:'10 BC',tick10ad:'AD 10'}};
 // издание задаётся при сборке (EDITION): ru — русский и английский, en — только английский
 const LANGS=(typeof EDITION!=='undefined'&&EDITION.langs)||['ru','en'];
-let LANG=LANGS[0];if(LANGS.length>1)try{const s=localStorage.getItem('pc-lang');if(LANGS.includes(s))LANG=s}catch(_){}
+let LANG=LANGS[0];// издание всегда открывается на своём основном языке (русское — на русском); переключение действует до закрытия страницы
 if(!LANGS.includes(LANG))LANG=LANGS[0];
 const T=k=>L10N[LANG][k];
 const EN=()=>LANG==='en';
@@ -1271,7 +1271,7 @@ try{const th=localStorage.getItem('pc-theme');if(th==='dark'||th==='light')docum
 document.getElementById('themeBtn').onclick=()=>{const n=isDark()?'light':'dark';document.documentElement.dataset.theme=n;try{localStorage.setItem('pc-theme',n)}catch(_){}themeUpd()};
 matchMedia('(prefers-color-scheme: dark)').addEventListener?.('change',themeUpd);
 // ---------- язык
-function setLang(l){LANG=l;try{localStorage.setItem('pc-lang',l)}catch(_){}regroup();applyStatic();document.getElementById('sub').textContent=subText();
+function setLang(l){LANG=l;regroup();applyStatic();document.getElementById('sub').textContent=subText();
   drawGroups();layout();const pop=document.getElementById('infoPop');if(!pop.hidden)pop.innerHTML=infoHTML();
   if(sel!=null&&!drawer.hidden)openDrawer(P[sel]);if(q.value&&sel!=null)q.value=N(P[sel]);
   drawViews();if(mode==='para')drawPara();if(mode==='tree')drawTree();if(mwState&&mwState.open&&!drawer.hidden)openMW(mwState.y,mwState.w);// «Тем временем» перерисовываем, только если оно сейчас открыто
