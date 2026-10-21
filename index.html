@@ -219,12 +219,8 @@ header p{margin:0;color:var(--muted);font-family:'Roboto',var(--display);font-we
 .btn.rb{width:30px;height:30px;padding:0;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;flex:0 0 auto;font-family:var(--display);font-size:11.5px;font-weight:700;letter-spacing:.02em}
 .btn.rb.infob{font-family:var(--serif);font-style:italic;font-size:16px;letter-spacing:0}
 .searchb{display:none!important}
-.foot{font-size:12px;color:var(--muted);margin:0}
-.foot a{color:inherit}
 header{display:flex;flex-wrap:wrap;align-items:center;gap:4px 14px;position:relative}
 .infopop{position:absolute;z-index:45;right:0;top:calc(100% + 6px);width:min(calc(100vw - 32px),420px);background:var(--surface);border:var(--bd);border-radius:var(--r-lg);box-shadow:0 12px 30px rgba(0,0,0,.2);padding:12px 14px;font-size:var(--fs-ctl);color:var(--muted)}
-.foot .author{display:block;color:var(--fg);font-weight:600;margin-bottom:2px}
-.foot .author a{color:var(--lapis)}
 .infopop .author{display:block;font-weight:600;color:var(--fg);margin-bottom:6px}
 .infopop .author a{color:var(--lapis)}
 .infopop .ip1{color:var(--fg);font-family:var(--serif);font-size:15px;margin-bottom:8px}
@@ -245,7 +241,6 @@ header h1 .ttl-ic{display:inline-block;width:.74em;height:.74em;margin:0 -.06em;
   .btn.rb{width:27px;height:27px}
   .infopop{left:0;right:0;width:auto}
   header{gap:4px 6px;flex-wrap:nowrap;align-items:center}
-  .foot{display:none}
   header p{display:none}
 }
 /* Шкала времени: ось, полосы, подписи, playhead, выделение */
@@ -613,7 +608,6 @@ svg text{font-family:var(--sans)}
       <div class="g-bodywrap"><div class="g-body" id="gbody"></div><div class="cursor" id="cursor"><div class="cursor-win" id="cwin"></div></div></div>
     </div>
   </div>
-  <!--@ru--><p class="foot"><span class="author"><span id="authorL">Связаться с автором:</span> <a href="https://t.me/galagaev" target="_blank" rel="noopener">@galagaev</a></span></p><!--@/ru-->
 </div>
 <div class="tip" id="tip" hidden></div>
 <aside class="drawer reader" id="reader" hidden data-ta="aria-label:bible">
@@ -677,7 +671,7 @@ const L10N={
  showTl:'Показать на шкале',routeMap:'Показать на карте',docTitle:'Библейский таймлайн — люди и события Библии на шкале времени и карте',tribe:'Колено: ',undatedG:'Без датировки',
  author:'Связаться с автором:',legendH:'Легенда',srcH:'Источники',
  lg:['годы служения или царствования','годы жизни','упоминание в тексте (годы приблизительны)','пророчица','датировка спорна','штриховка — лжепророк или царь, «делавший неугодное в очах Господних»','пунктир на шкале — ключевое событие'],
- src:'Люди, места и даты упоминаний: <a href="https://github.com/robertrouse/theographic-bible-metadata" target="_blank" rel="noopener">Theographic Bible Metadata</a> (CC BY-SA 4.0), даты переведены с хронологии Ашшера на хронологию царей по Тиле (Исход ок. 1446 г. до н. э.). Фигуры истории церкви, мировые правители, современники и события собраны вручную; годы приблизительны. Карта: Natural Earth. Границы государств: <a href="https://github.com/Seshat-Global-History-Databank/cliopatria" target="_blank" rel="noopener">Cliopatria</a> (Seshat Global History Databank, CC BY 4.0; упрощены), для Ближнего Востока 1550–333 до н. э. — вручную; все границы приблизительны. Текст Библии: Синодальный перевод и King James Version (общественное достояние, по сборке scrollmapper/bible_databases). Английские описания малоизвестных людей — словарь Истона (1897). События с участниками — Theographic. «Хроника Библии» — даты и события таймлайна <a href="https://biblehub.com/timeline/" target="_blank" rel="noopener">BibleHub</a>.',
+ src:'Theographic Bible Metadata, Cliopatria (Seshat Global History Databank), Natural Earth, Синодальный перевод, King James Version, словарь Истона (1897), BibleHub.',
  yrs:n=>n%10===1&&n%100!==11?'год':[2,3,4].includes(n%10)&&![12,13,14].includes(n%100)?'года':'лет',
  bc:'до н. э.',ad:'н. э.',tick10bc:'10 до н. э.',tick10ad:'10 н. э.'},/*@/ru*/
 en:{title:'Bible Timeline',sub:(n,m)=>`${n} people and ${m} events, from Adam to the present day: everyone named in the Bible, and key figures of Christianity`,
@@ -697,7 +691,7 @@ en:{title:'Bible Timeline',sub:(n,m)=>`${n} people and ${m} events, from Adam to
  showTl:'Show on timeline',routeMap:'Show on map',docTitle:'Bible Timeline — people and events of the Bible on a timeline and map',tribe:'Tribe: ',undatedG:'Undated',
  author:'Contact the author:',legendH:'Legend',srcH:'Sources',
  lg:['years of ministry or reign','lifespan','mentioned in the text (approximate years)','prophetess','disputed dating','hatched — a false prophet, or a king who “did evil in the eyes of the Lord”','dashed line on the timeline — key event'],
- src:'People, places and dates of mentions: <a href="https://github.com/robertrouse/theographic-bible-metadata" target="_blank" rel="noopener">Theographic Bible Metadata</a> (CC BY-SA 4.0); dates converted from Ussher’s chronology to Thiele’s chronology of the kings (Exodus c. 1446 BC). Church history figures, world rulers, contemporaries and events are compiled by hand; years are approximate. Map: Natural Earth. State borders: <a href="https://github.com/Seshat-Global-History-Databank/cliopatria" target="_blank" rel="noopener">Cliopatria</a> (Seshat Global History Databank, CC BY 4.0; simplified); Near East 1550–333 BC drawn by hand; all borders are approximate. Bible text: '+/*@ru*/'Russian Synodal and '+/*@/ru*/'King James Version (public domain, via scrollmapper/bible_databases). Descriptions of lesser-known people: Easton’s Bible Dictionary (1897). Events with participants: Theographic. “Bible chronicle”: dates and events from the <a href="https://biblehub.com/timeline/" target="_blank" rel="noopener">BibleHub timeline</a>.',
+ src:'Theographic Bible Metadata, Cliopatria (Seshat Global History Databank), Natural Earth, '+/*@ru*/'Russian Synodal Bible, '+/*@/ru*/'King James Version, Easton’s Bible Dictionary (1897), BibleHub.',
  yrs:n=>n===1?'year':'years',
  bc:'BC',ad:'AD',tick10bc:'10 BC',tick10ad:'AD 10'}};
 // издание задаётся при сборке (EDITION): ru — русский и английский, en — только английский
@@ -719,7 +713,6 @@ const PLN=pi=>EN()?(PL[pi][3]||PL[pi][0]):PL[pi][0];  // название мес
 function applyStatic(){document.documentElement.lang=LANG;document.title=T('docTitle');{const rt=document.querySelector('.rtr');if(rt)rt.hidden=!LANGS.includes('ru')}{const w=T('title').split(' ');document.getElementById('ttl').innerHTML=esc(w[0])+' <svg class="ttl-ic" viewBox="0 0 12 12" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><path d="M1 2.5h6M4 6h7M2.5 9.5h5"/></svg> '+esc(w.slice(1).join(' '))}
   document.querySelectorAll('[data-t]').forEach(el=>el.textContent=T(el.dataset.t));
   document.querySelectorAll('[data-ta]').forEach(el=>el.dataset.ta.split(';').forEach(s=>{const [a,k]=s.split(':');el.setAttribute(a,T(k))}));
-  {const al=document.getElementById('authorL');if(al)al.textContent=T('author')}
   const lb=document.getElementById('langBtn');lb.hidden=LANGS.length<2;lb.textContent=T('langBtn');lb.title=T('langTitle');lb.setAttribute('aria-label',T('langTitle'));
   {const bb=document.getElementById('bibleBtn');bb.title=T('readBible');bb.setAttribute('aria-label',T('readBible'))}
   document.getElementById('searchBtn').setAttribute('aria-label',T('search'));const ib=document.getElementById('infoBtn');ib.setAttribute('aria-label',T('info'));ib.title=T('info');
