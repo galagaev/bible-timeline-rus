@@ -436,9 +436,12 @@ svg text{font-family:var(--sans)}
 .selchip .selopen{display:flex;align-items:center;gap:6px;min-width:0;background:none;padding:2px 2px 2px 0;font-weight:600}
 .selchip .selopen span{min-width:0;overflow:hidden;text-overflow:ellipsis}
 .selchip .selopen svg{flex:0 0 auto;opacity:.7}
-.selchip .stback{display:flex;align-items:center;gap:4px;font-weight:600;padding:2px 8px 2px 4px;margin-left:-6px}
-.selchip:not(.only-back) .stback{border-right:var(--bd);border-radius:10px 0 0 10px;margin-right:2px}
+.selchip .stback{display:flex;align-items:center;gap:4px;font-weight:600;background:none;padding:2px 10px 2px 4px;margin:0;border-radius:10px}
+.selchip .stback:hover{background:var(--band)}
+.selchip:not(.only-back) .stback{border-radius:10px 0 0 10px;border-right:var(--bd);margin-right:4px}
 .selchip.only-back{padding:3px 4px}
+.selchip.only-back .stback{padding:2px 10px 2px 6px}
+.selchip.over-drawer{left:calc((100% - min(400px,100%))/2)}   /* карточка открыта справа — плашка по центру свободной части */
 .selchip .stback[hidden],.selchip .selopen[hidden],.selchip #selclr[hidden]{display:none}
 .selchip #seldot{flex:0 0 8px;height:8px;border-radius:2px}
 @media (max-width:700px){
@@ -973,7 +976,7 @@ document.getElementById('dclose').onclick=closeSel;
 const mobQ=matchMedia('(max-width:1180px),(pointer:coarse)');// телефоны и планшеты
 function minDrawer(){drawer.hidden=true;if(mwState)mwState.open=false;updSelChip()}
 function updSelChip(){const c=document.getElementById('selchip'),on=sel!=null&&drawer.hidden&&mode!=='para'&&mode!=='study',back=stBack&&mode!=='study';
-  c.hidden=!on&&!back;c.classList.toggle('only-back',!on);document.getElementById('selopen').hidden=!on;document.getElementById('selclr').hidden=!on;
+  c.hidden=!on&&!back;c.classList.toggle('only-back',!on);c.classList.toggle('over-drawer',!drawer.hidden&&!matchMedia('(max-width:700px)').matches);document.getElementById('selopen').hidden=!on;document.getElementById('selclr').hidden=!on;
   const sb=document.getElementById('stback');sb.hidden=!back;if(back){sb.innerHTML=`<svg width="11" height="11" viewBox="0 0 12 12" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7.5 3L4.5 6l3 3"/></svg>${esc(T('stBack'))}`;sb.title=T('stBackT')}
   if(!on)return;
   document.getElementById('seltxt').textContent=N(P[sel]);document.getElementById('seldot').style.background=gcol(P[sel].g)}
