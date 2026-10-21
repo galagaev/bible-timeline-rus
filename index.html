@@ -507,12 +507,12 @@ svg text{font-family:var(--sans)}
 /* режим, квартал, урок и поиск — в одну строку при любой ширине: списки и поиск сжимаются */
 .app[data-mode="study"] .bar-tools{flex-wrap:nowrap}
 .app[data-mode="study"] .studyctl{min-width:0}
-.app[data-mode="study"] .studyctl #stQ{flex:0 1 230px;width:0;min-width:70px}
-.app[data-mode="study"] .studyctl #stSel{flex:1 1 280px;width:0;min-width:90px}
+.app[data-mode="study"] .studyctl #stQ{flex:0 1 auto;width:auto;max-width:260px;min-width:70px}
+.app[data-mode="study"] .studyctl #stSel{flex:0 1 auto;width:auto;max-width:300px;min-width:90px}
 .app[data-mode="study"] #dd-view{flex:none}
 .app[data-mode="study"] #dd-view summary{white-space:nowrap}
-.app[data-mode="study"] .studyctl{flex:1 1 auto;max-width:640px}
-.app[data-mode="study"] .search{flex:0 1 200px;min-width:110px}
+.app[data-mode="study"] .studyctl{flex:0 1 auto}   /* без растяжения — поиск вплотную к спискам */
+.app[data-mode="study"] .search{flex:0 1 300px;min-width:110px}
 .studyctl select{font:inherit;font-size:var(--fs-ctl);height:var(--ctl-h,30px);box-sizing:border-box;padding:0 6px;border:var(--bd);border-radius:var(--r);background:var(--surface);color:var(--fg);width:auto;max-width:300px;min-width:0;text-overflow:ellipsis}
 #study{padding:0;border:0;border-radius:0;background:none;scroll-padding-top:56px}   /* без рамки: текст на фоне страницы */
 .st{max-width:700px;margin:0 auto;padding:18px 20px 32px}
@@ -548,8 +548,8 @@ svg text{font-family:var(--sans)}
   /* всё в одну строку: режим — только значком, квартал — коротко («IV кв. 2026»), урок занимает остальное */
   .app[data-mode="study"] #vsum .vtx{display:none}
   .app[data-mode="study"] .studyctl{flex:1 1 0;min-width:0;gap:6px}
-  .studyctl #stQ{flex:0 0 auto;width:auto;max-width:none}
-  .studyctl #stSel{flex:1 1 0;width:0;max-width:none}
+  .app[data-mode="study"] .studyctl #stQ{flex:0 0 auto;width:auto;max-width:none}
+  .app[data-mode="study"] .studyctl #stSel{flex:1 1 0;width:0;max-width:none}
   .st{padding:12px 0 24px}   /* колонка во всю ширину вёрстки — по краям хедера */
   .st-day{font-size:18px}
   .st-days button{font-size:12.5px;padding:4px 1px}
