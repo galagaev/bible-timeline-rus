@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://galagaev.github.io/bible-timeline-rus/sitemap.xml
