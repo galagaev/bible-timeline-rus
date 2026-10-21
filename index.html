@@ -128,7 +128,7 @@ body{background:var(--bg);color:var(--fg);font-family:var(--sans);font-size:15px
 @keyframes spin{to{transform:rotate(360deg)}}
 @media (prefers-reduced-motion:reduce){.loader .spin{animation-duration:2.4s}}
 /* плашка о cookies (сайт со счётчиком посещений) */
-.cookie{position:fixed;z-index:44;left:16px;bottom:calc(14px + env(safe-area-inset-bottom,0px));max-width:min(420px,calc(100% - 32px));display:flex;align-items:center;gap:10px;background:var(--surface);border:var(--bd);border-radius:var(--r-lg);box-shadow:var(--sh-float);padding:8px 8px 8px 12px;font-size:13px;color:var(--fg)}
+.cookie{position:fixed;z-index:44;left:50%;transform:translateX(-50%);white-space:nowrap;bottom:calc(14px + env(safe-area-inset-bottom,0px));max-width:calc(100% - 32px);display:flex;align-items:center;gap:10px;background:var(--surface);border:var(--bd);border-radius:var(--r-lg);box-shadow:var(--sh-float);padding:8px 8px 8px 12px;font-size:13px;color:var(--fg)}
 .cookie .btn{flex:0 0 auto}
 /* Каркас: колонка приложения и что видно в каждом режиме */
 .app{display:flex;flex-direction:column;height:100%;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:12px 10px;box-sizing:border-box;gap:8px}
