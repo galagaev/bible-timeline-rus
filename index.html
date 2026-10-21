@@ -455,6 +455,8 @@ svg text{font-family:var(--sans)}
 /* Скачать лист: кнопка в панели и окно с предпросмотром */
 .dlb{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:0 10px;height:28px;box-sizing:border-box;flex:0 0 auto}
 .dlb svg{flex:0 0 auto}
+.app[data-mode="para"] #dlBtn{display:none}
+.dlctl[hidden]{display:none}
 .dlg{position:fixed;inset:0;z-index:70;background:rgba(0,0,0,.35);display:flex;align-items:center;justify-content:center;padding:16px}
 .dlg[hidden]{display:none}
 .dlbox{background:var(--surface);border:var(--bd);border-radius:var(--r-lg);box-shadow:var(--sh-pop);width:min(1100px,100%);max-height:100%;display:flex;flex-direction:column;gap:12px;padding:14px 16px;box-sizing:border-box}
@@ -565,7 +567,7 @@ svg text{font-family:var(--sans)}
     <div class="dlmini" id="dlMini" role="group"></div>
     <div class="dlyears"><span id="dlaL"></span><input type="number" id="dlaN" min="1" max="4200" inputmode="numeric"><select id="dlaE"></select><span id="dlbL"></span><input type="number" id="dlbN" min="1" max="2030" inputmode="numeric"><select id="dlbE"></select><span class="dlhint" id="dlHint"></span></div>
   </div>
-  <div class="dlf"><p class="dlnote" id="dlNote"></p><button class="btn pri" type="button" id="dlGo"></button></div>
+  <div class="dlf"><p class="dlnote" id="dlNote"></p><button class="btn pri" type="button" id="dlGo"></button><button class="btn pri" type="button" id="dlPdf"></button></div>
 </div></div>
 <template id="qrTpl"><svg class="qr" viewBox="-2 -2 37 37" shape-rendering="crispEdges" aria-hidden="true"><rect x="-2" y="-2" width="37" height="37" fill="#fff"/><path d="M0,0h1v1h-1zM1,0h1v1h-1zM2,0h1v1h-1zM3,0h1v1h-1zM4,0h1v1h-1zM5,0h1v1h-1zM6,0h1v1h-1zM10,0h1v1h-1zM12,0h1v1h-1zM13,0h1v1h-1zM16,0h1v1h-1zM17,0h1v1h-1zM19,0h1v1h-1zM20,0h1v1h-1zM21,0h1v1h-1zM23,0h1v1h-1zM26,0h1v1h-1zM27,0h1v1h-1zM28,0h1v1h-1zM29,0h1v1h-1zM30,0h1v1h-1zM31,0h1v1h-1zM32,0h1v1h-1zM0,1h1v1h-1zM6,1h1v1h-1zM9,1h1v1h-1zM10,1h1v1h-1zM11,1h1v1h-1zM13,1h1v1h-1zM14,1h1v1h-1zM15,1h1v1h-1zM16,1h1v1h-1zM17,1h1v1h-1zM26,1h1v1h-1zM32,1h1v1h-1zM0,2h1v1h-1zM2,2h1v1h-1zM3,2h1v1h-1zM4,2h1v1h-1zM6,2h1v1h-1zM8,2h1v1h-1zM10,2h1v1h-1zM11,2h1v1h-1zM13,2h1v1h-1zM15,2h1v1h-1zM17,2h1v1h-1zM18,2h1v1h-1zM21,2h1v1h-1zM22,2h1v1h-1zM23,2h1v1h-1zM26,2h1v1h-1zM28,2h1v1h-1zM29,2h1v1h-1zM30,2h1v1h-1zM32,2h1v1h-1zM0,3h1v1h-1zM2,3h1v1h-1zM3,3h1v1h-1zM4,3h1v1h-1zM6,3h1v1h-1zM8,3h1v1h-1zM11,3h1v1h-1zM14,3h1v1h-1zM16,3h1v1h-1zM19,3h1v1h-1zM20,3h1v1h-1zM26,3h1v1h-1zM28,3h1v1h-1zM29,3h1v1h-1zM30,3h1v1h-1zM32,3h1v1h-1zM0,4h1v1h-1zM2,4h1v1h-1zM3,4h1v1h-1zM4,4h1v1h-1zM6,4h1v1h-1zM8,4h1v1h-1zM9,4h1v1h-1zM10,4h1v1h-1zM11,4h1v1h-1zM15,4h1v1h-1zM18,4h1v1h-1zM21,4h1v1h-1zM23,4h1v1h-1zM26,4h1v1h-1zM28,4h1v1h-1zM29,4h1v1h-1zM30,4h1v1h-1zM32,4h1v1h-1zM0,5h1v1h-1zM6,5h1v1h-1zM8,5h1v1h-1zM9,5h1v1h-1zM11,5h1v1h-1zM12,5h1v1h-1zM13,5h1v1h-1zM15,5h1v1h-1zM16,5h1v1h-1zM20,5h1v1h-1zM21,5h1v1h-1zM26,5h1v1h-1zM32,5h1v1h-1zM0,6h1v1h-1zM1,6h1v1h-1zM2,6h1v1h-1zM3,6h1v1h-1zM4,6h1v1h-1zM5,6h1v1h-1zM6,6h1v1h-1zM8,6h1v1h-1zM10,6h1v1h-1zM12,6h1v1h-1zM14,6h1v1h-1zM16,6h1v1h-1zM18,6h1v1h-1zM20,6h1v1h-1zM22,6h1v1h-1zM24,6h1v1h-1zM26,6h1v1h-1zM27,6h1v1h-1zM28,6h1v1h-1zM29,6h1v1h-1zM30,6h1v1h-1zM31,6h1v1h-1zM32,6h1v1h-1zM8,7h1v1h-1zM9,7h1v1h-1zM10,7h1v1h-1zM15,7h1v1h-1zM21,7h1v1h-1zM22,7h1v1h-1zM0,8h1v1h-1zM2,8h1v1h-1zM3,8h1v1h-1zM4,8h1v1h-1zM5,8h1v1h-1zM6,8h1v1h-1zM9,8h1v1h-1zM10,8h1v1h-1zM13,8h1v1h-1zM14,8h1v1h-1zM15,8h1v1h-1zM17,8h1v1h-1zM22,8h1v1h-1zM24,8h1v1h-1zM26,8h1v1h-1zM27,8h1v1h-1zM28,8h1v1h-1zM29,8h1v1h-1zM30,8h1v1h-1zM0,9h1v1h-1zM1,9h1v1h-1zM3,9h1v1h-1zM5,9h1v1h-1zM7,9h1v1h-1zM8,9h1v1h-1zM11,9h1v1h-1zM12,9h1v1h-1zM16,9h1v1h-1zM18,9h1v1h-1zM19,9h1v1h-1zM20,9h1v1h-1zM23,9h1v1h-1zM26,9h1v1h-1zM27,9h1v1h-1zM29,9h1v1h-1zM30,9h1v1h-1zM31,9h1v1h-1zM32,9h1v1h-1zM1,10h1v1h-1zM2,10h1v1h-1zM4,10h1v1h-1zM6,10h1v1h-1zM15,10h1v1h-1zM18,10h1v1h-1zM22,10h1v1h-1zM26,10h1v1h-1zM28,10h1v1h-1zM30,10h1v1h-1zM31,10h1v1h-1zM0,11h1v1h-1zM1,11h1v1h-1zM3,11h1v1h-1zM4,11h1v1h-1zM8,11h1v1h-1zM10,11h1v1h-1zM12,11h1v1h-1zM14,11h1v1h-1zM20,11h1v1h-1zM21,11h1v1h-1zM22,11h1v1h-1zM24,11h1v1h-1zM25,11h1v1h-1zM28,11h1v1h-1zM29,11h1v1h-1zM30,11h1v1h-1zM31,11h1v1h-1zM2,12h1v1h-1zM6,12h1v1h-1zM9,12h1v1h-1zM10,12h1v1h-1zM12,12h1v1h-1zM15,12h1v1h-1zM18,12h1v1h-1zM21,12h1v1h-1zM25,12h1v1h-1zM27,12h1v1h-1zM28,12h1v1h-1zM29,12h1v1h-1zM31,12h1v1h-1zM32,12h1v1h-1zM1,13h1v1h-1zM7,13h1v1h-1zM8,13h1v1h-1zM13,13h1v1h-1zM14,13h1v1h-1zM15,13h1v1h-1zM16,13h1v1h-1zM20,13h1v1h-1zM21,13h1v1h-1zM23,13h1v1h-1zM26,13h1v1h-1zM29,13h1v1h-1zM30,13h1v1h-1zM31,13h1v1h-1zM32,13h1v1h-1zM2,14h1v1h-1zM3,14h1v1h-1zM4,14h1v1h-1zM5,14h1v1h-1zM6,14h1v1h-1zM8,14h1v1h-1zM10,14h1v1h-1zM11,14h1v1h-1zM12,14h1v1h-1zM14,14h1v1h-1zM17,14h1v1h-1zM18,14h1v1h-1zM19,14h1v1h-1zM21,14h1v1h-1zM22,14h1v1h-1zM24,14h1v1h-1zM25,14h1v1h-1zM26,14h1v1h-1zM27,14h1v1h-1zM30,14h1v1h-1zM31,14h1v1h-1zM1,15h1v1h-1zM2,15h1v1h-1zM3,15h1v1h-1zM4,15h1v1h-1zM5,15h1v1h-1zM7,15h1v1h-1zM10,15h1v1h-1zM11,15h1v1h-1zM13,15h1v1h-1zM14,15h1v1h-1zM16,15h1v1h-1zM18,15h1v1h-1zM19,15h1v1h-1zM20,15h1v1h-1zM21,15h1v1h-1zM22,15h1v1h-1zM23,15h1v1h-1zM24,15h1v1h-1zM25,15h1v1h-1zM26,15h1v1h-1zM28,15h1v1h-1zM29,15h1v1h-1zM30,15h1v1h-1zM0,16h1v1h-1zM1,16h1v1h-1zM2,16h1v1h-1zM4,16h1v1h-1zM6,16h1v1h-1zM8,16h1v1h-1zM9,16h1v1h-1zM10,16h1v1h-1zM12,16h1v1h-1zM17,16h1v1h-1zM18,16h1v1h-1zM19,16h1v1h-1zM20,16h1v1h-1zM22,16h1v1h-1zM24,16h1v1h-1zM25,16h1v1h-1zM27,16h1v1h-1zM28,16h1v1h-1zM32,16h1v1h-1zM0,17h1v1h-1zM1,17h1v1h-1zM2,17h1v1h-1zM3,17h1v1h-1zM4,17h1v1h-1zM11,17h1v1h-1zM12,17h1v1h-1zM13,17h1v1h-1zM16,17h1v1h-1zM17,17h1v1h-1zM18,17h1v1h-1zM19,17h1v1h-1zM20,17h1v1h-1zM22,17h1v1h-1zM23,17h1v1h-1zM26,17h1v1h-1zM27,17h1v1h-1zM29,17h1v1h-1zM30,17h1v1h-1zM32,17h1v1h-1zM1,18h1v1h-1zM3,18h1v1h-1zM4,18h1v1h-1zM5,18h1v1h-1zM6,18h1v1h-1zM7,18h1v1h-1zM8,18h1v1h-1zM9,18h1v1h-1zM10,18h1v1h-1zM13,18h1v1h-1zM14,18h1v1h-1zM15,18h1v1h-1zM16,18h1v1h-1zM17,18h1v1h-1zM20,18h1v1h-1zM22,18h1v1h-1zM24,18h1v1h-1zM25,18h1v1h-1zM26,18h1v1h-1zM27,18h1v1h-1zM28,18h1v1h-1zM30,18h1v1h-1zM0,19h1v1h-1zM2,19h1v1h-1zM4,19h1v1h-1zM5,19h1v1h-1zM13,19h1v1h-1zM16,19h1v1h-1zM17,19h1v1h-1zM18,19h1v1h-1zM26,19h1v1h-1zM27,19h1v1h-1zM28,19h1v1h-1zM29,19h1v1h-1zM30,19h1v1h-1zM31,19h1v1h-1zM4,20h1v1h-1zM6,20h1v1h-1zM8,20h1v1h-1zM10,20h1v1h-1zM14,20h1v1h-1zM16,20h1v1h-1zM19,20h1v1h-1zM20,20h1v1h-1zM21,20h1v1h-1zM22,20h1v1h-1zM23,20h1v1h-1zM25,20h1v1h-1zM27,20h1v1h-1zM28,20h1v1h-1zM29,20h1v1h-1zM31,20h1v1h-1zM0,21h1v1h-1zM1,21h1v1h-1zM2,21h1v1h-1zM3,21h1v1h-1zM5,21h1v1h-1zM9,21h1v1h-1zM11,21h1v1h-1zM12,21h1v1h-1zM15,21h1v1h-1zM17,21h1v1h-1zM18,21h1v1h-1zM21,21h1v1h-1zM23,21h1v1h-1zM26,21h1v1h-1zM32,21h1v1h-1zM0,22h1v1h-1zM2,22h1v1h-1zM3,22h1v1h-1zM4,22h1v1h-1zM6,22h1v1h-1zM8,22h1v1h-1zM15,22h1v1h-1zM16,22h1v1h-1zM17,22h1v1h-1zM20,22h1v1h-1zM22,22h1v1h-1zM25,22h1v1h-1zM29,22h1v1h-1zM30,22h1v1h-1zM31,22h1v1h-1zM0,23h1v1h-1zM2,23h1v1h-1zM3,23h1v1h-1zM5,23h1v1h-1zM7,23h1v1h-1zM10,23h1v1h-1zM12,23h1v1h-1zM13,23h1v1h-1zM15,23h1v1h-1zM18,23h1v1h-1zM21,23h1v1h-1zM25,23h1v1h-1zM26,23h1v1h-1zM29,23h1v1h-1zM30,23h1v1h-1zM32,23h1v1h-1zM0,24h1v1h-1zM2,24h1v1h-1zM5,24h1v1h-1zM6,24h1v1h-1zM7,24h1v1h-1zM9,24h1v1h-1zM12,24h1v1h-1zM13,24h1v1h-1zM15,24h1v1h-1zM17,24h1v1h-1zM23,24h1v1h-1zM24,24h1v1h-1zM25,24h1v1h-1zM26,24h1v1h-1zM27,24h1v1h-1zM28,24h1v1h-1zM31,24h1v1h-1zM32,24h1v1h-1zM8,25h1v1h-1zM10,25h1v1h-1zM14,25h1v1h-1zM18,25h1v1h-1zM19,25h1v1h-1zM20,25h1v1h-1zM21,25h1v1h-1zM24,25h1v1h-1zM28,25h1v1h-1zM30,25h1v1h-1zM32,25h1v1h-1zM0,26h1v1h-1zM1,26h1v1h-1zM2,26h1v1h-1zM3,26h1v1h-1zM4,26h1v1h-1zM5,26h1v1h-1zM6,26h1v1h-1zM15,26h1v1h-1zM16,26h1v1h-1zM18,26h1v1h-1zM20,26h1v1h-1zM21,26h1v1h-1zM23,26h1v1h-1zM24,26h1v1h-1zM26,26h1v1h-1zM28,26h1v1h-1zM30,26h1v1h-1zM31,26h1v1h-1zM0,27h1v1h-1zM6,27h1v1h-1zM8,27h1v1h-1zM9,27h1v1h-1zM10,27h1v1h-1zM11,27h1v1h-1zM14,27h1v1h-1zM16,27h1v1h-1zM19,27h1v1h-1zM20,27h1v1h-1zM21,27h1v1h-1zM22,27h1v1h-1zM23,27h1v1h-1zM24,27h1v1h-1zM28,27h1v1h-1zM29,27h1v1h-1zM30,27h1v1h-1zM0,28h1v1h-1zM2,28h1v1h-1zM3,28h1v1h-1zM4,28h1v1h-1zM6,28h1v1h-1zM8,28h1v1h-1zM11,28h1v1h-1zM18,28h1v1h-1zM21,28h1v1h-1zM24,28h1v1h-1zM25,28h1v1h-1zM26,28h1v1h-1zM27,28h1v1h-1zM28,28h1v1h-1zM29,28h1v1h-1zM31,28h1v1h-1zM32,28h1v1h-1zM0,29h1v1h-1zM2,29h1v1h-1zM3,29h1v1h-1zM4,29h1v1h-1zM6,29h1v1h-1zM8,29h1v1h-1zM9,29h1v1h-1zM10,29h1v1h-1zM11,29h1v1h-1zM14,29h1v1h-1zM15,29h1v1h-1zM16,29h1v1h-1zM17,29h1v1h-1zM20,29h1v1h-1zM22,29h1v1h-1zM23,29h1v1h-1zM24,29h1v1h-1zM25,29h1v1h-1zM28,29h1v1h-1zM29,29h1v1h-1zM32,29h1v1h-1zM0,30h1v1h-1zM2,30h1v1h-1zM3,30h1v1h-1zM4,30h1v1h-1zM6,30h1v1h-1zM8,30h1v1h-1zM10,30h1v1h-1zM12,30h1v1h-1zM13,30h1v1h-1zM14,30h1v1h-1zM18,30h1v1h-1zM19,30h1v1h-1zM22,30h1v1h-1zM24,30h1v1h-1zM26,30h1v1h-1zM27,30h1v1h-1zM29,30h1v1h-1zM30,30h1v1h-1zM0,31h1v1h-1zM6,31h1v1h-1zM9,31h1v1h-1zM12,31h1v1h-1zM13,31h1v1h-1zM14,31h1v1h-1zM16,31h1v1h-1zM19,31h1v1h-1zM20,31h1v1h-1zM21,31h1v1h-1zM25,31h1v1h-1zM28,31h1v1h-1zM29,31h1v1h-1zM30,31h1v1h-1zM0,32h1v1h-1zM1,32h1v1h-1zM2,32h1v1h-1zM3,32h1v1h-1zM4,32h1v1h-1zM5,32h1v1h-1zM6,32h1v1h-1zM8,32h1v1h-1zM9,32h1v1h-1zM12,32h1v1h-1zM14,32h1v1h-1zM17,32h1v1h-1zM19,32h1v1h-1zM22,32h1v1h-1zM24,32h1v1h-1zM25,32h1v1h-1zM27,32h1v1h-1zM31,32h1v1h-1z" fill="#000"/></svg></template>
 <div class="hlchip selchip" id="selchip" hidden><button type="button" class="selopen" id="selopen" data-ta="aria-label:selOpen;title:selOpen"><i id="seldot"></i><span id="seltxt"></span><svg width="11" height="11" viewBox="0 0 12 12" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7.5l3-3 3 3"/></svg></button><button type="button" id="selclr" data-ta="aria-label:close">✕</button></div>
@@ -594,9 +596,9 @@ const P=DATA.P, PL=DATA.PL;
 // ---------- язык интерфейса
 const L10N={
 /*@ru*/ru:{title:'Библейский таймлайн',sub:(n,m,k)=>`${n} человек и ${m} ${[2,3,4].includes(k%10)&&![12,13,14].includes(k%100)?'события':k%10===1&&k%100!==11?'событие':'событий'} от Адама до наших дней: все, кто назван в Библии, и главные фигуры христианства`,
- byGen:'примерно, по родословию',hlClear:'Сбросить',dlBtn:'Скачать лист',dlTitle:'Скачать лист',dlNote:'В лист попадают группы и точность дат, выбранные на шкале.',dlFrom:'С',dlTo:'по',dlShort:'Скачать',qrTxt:'Откройте сайт на телефоне',dlHint:'нажмите на эпоху или потяните рамку',dlGo:'Скачать PNG',cookieTxt:'Этот сайт использует cookies',cookieOk:'Понятно',pageLoading:'Загрузка…',rtSyn:'СИН',dMin:'Свернуть карточку',selOpen:'Открыть карточку',tFold:'Свернуть ветку (Shift — со всеми внутренними)',tUnfold:'Развернуть ветку (Shift — целиком)',tAround:'Вокруг человека',tLine:'Линия',tCenter:'В центре',tByTribe:'Колена',tByGroup:'Группы',tShowTl:'Показать на шкале',tSpouse:'супруг(а)',tMother:'мать',tApprox:'годы примерно',tNoTribe:'колено неизвестно',family:'Родословие',
+ byGen:'примерно, по родословию',hlClear:'Сбросить',dlBtn:'Скачать лист',dlTitle:'Скачать лист',dlNote:'В лист попадают группы и точность дат, выбранные на шкале.',dlFrom:'С',dlTo:'по',dlShort:'Скачать',qrTxt:'Откройте сайт на телефоне',dlHint:'нажмите на эпоху или потяните рамку',dlGo:'Скачать PNG',dlPdf:'Скачать PDF',dlMapTitle:'Скачать карту',dlMapNote:'Карта сохраняется так, как она видна сейчас: год, масштаб и слои.',cookieTxt:'Этот сайт использует cookies',cookieOk:'Понятно',pageLoading:'Загрузка…',rtSyn:'СИН',dMin:'Свернуть карточку',selOpen:'Открыть карточку',tFold:'Свернуть ветку (Shift — со всеми внутренними)',tUnfold:'Развернуть ветку (Shift — целиком)',tAround:'Вокруг человека',tLine:'Линия',tCenter:'В центре',tByTribe:'Колена',tByGroup:'Группы',tShowTl:'Показать на шкале',tSpouse:'супруг(а)',tMother:'мать',tApprox:'годы примерно',tNoTribe:'колено неизвестно',family:'Родословие',
  mode:'Режим',timeline:'Таймлайн',map:'Карта',para:'Парадоксы времени',tree:'Родословие',randomP:'Случайный парадокс',paraIntro:'Сравнения отрезков времени. Числа посчитаны по датам этой шкалы.',treeSoon:'Родословие появится здесь: древо выбранного человека — предки, потомки, братья и сёстры, раскрашенные по коленам.',mw:'Тем временем',mwW0:'этот год',mwW:n=>`±${n} лет`,mwNone:'В эти годы во включённых группах ничего нет.',mwBack:'← Тем временем',prevY:'Раньше',nextY:'Позже',nYrs:n=>{const a=Math.abs(n)%100,b=a%10;return n+' '+(a>10&&a<20?'лет':b===1?'год':b>=2&&b<=4?'года':'лет')},groups:'Группы',certs:'Точность дат',groupsN:(n,m)=>`Группы: ${n} из ${m}`,certsAll:'Точность дат: все',certsN:c=>`Точность дат: ${c} из 3`,datesShort:'Даты',
- searchPh:'Найти человека или событие',searchAria:'Поиск по именам',search:'Поиск',noMatch:'Никого не нашлось',undated:'без даты',
+ searchPh:'Найти человека или событие: Иеремия, Исход, Павел…',searchAria:'Поиск по именам',search:'Поиск',noMatch:'Никого не нашлось',undated:'без даты',
  mapAria:'Карта мест, где упоминаются люди выбранного времени',v_canaan:'Ханаан',v_east:'Ближний Восток',v_med:'Средиземноморье',v_europe:'Европа',v_world:'Мир',places:'Города и места',states:'Государства',
  zoomIn:'Крупнее',zoomOut:'Мельче',card:'Карточка человека',close:'Закрыть',info:'О странице, легенда и источники',themeDark:'Тёмная тема',themeLight:'Светлая тема',langBtn:'EN',langTitle:'English version',
  certK:'Годы известны',certM:'По упоминаниям в тексте',certI:'Выведены по родству',secBible:'Библия',secEvents:'Хронология',secRulers:'Мировые правители',secWorld:'Мир вокруг Библии',secChurch:'История церкви',secOther:'Прочие люди Библии',
@@ -614,9 +616,9 @@ const L10N={
  yrs:n=>n%10===1&&n%100!==11?'год':[2,3,4].includes(n%10)&&![12,13,14].includes(n%100)?'года':'лет',
  bc:'до н. э.',ad:'н. э.',tick10bc:'10 до н. э.',tick10ad:'10 н. э.'},/*@/ru*/
 en:{title:'Bible Timeline',sub:(n,m)=>`${n} people and ${m} events, from Adam to the present day: everyone named in the Bible, and key figures of Christianity`,
- byGen:'approximate, from the genealogy',hlClear:'Clear',dlBtn:'Download sheet',dlTitle:'Download sheet',dlNote:'The sheet shows the groups and date certainty selected on the timeline.',dlFrom:'From',dlTo:'to',dlShort:'Download',qrTxt:'Open the site on your phone',dlHint:'click an era or drag the frame',dlGo:'Download PNG',cookieTxt:'This site uses cookies',cookieOk:'OK',pageLoading:'Loading…',rtSyn:/*@ru*/'СИН'||/*@/ru*/'',dMin:'Minimise card',selOpen:'Open card',tFold:'Collapse branch (Shift — all levels)',tUnfold:'Expand branch (Shift — all levels)',tAround:'Around a person',tLine:'Line',tCenter:'Centre',tByTribe:'Tribes',tByGroup:'Groups',tShowTl:'Show on timeline',tSpouse:'spouse',tMother:'mother',tApprox:'approximate years',tNoTribe:'tribe unknown',family:'Family tree',
+ byGen:'approximate, from the genealogy',hlClear:'Clear',dlBtn:'Download sheet',dlTitle:'Download sheet',dlNote:'The sheet shows the groups and date certainty selected on the timeline.',dlFrom:'From',dlTo:'to',dlShort:'Download',qrTxt:'Open the site on your phone',dlHint:'click an era or drag the frame',dlGo:'Download PNG',dlPdf:'Download PDF',dlMapTitle:'Download map',dlMapNote:'The map is saved as it is shown now: year, zoom and layers.',cookieTxt:'This site uses cookies',cookieOk:'OK',pageLoading:'Loading…',rtSyn:/*@ru*/'СИН'||/*@/ru*/'',dMin:'Minimise card',selOpen:'Open card',tFold:'Collapse branch (Shift — all levels)',tUnfold:'Expand branch (Shift — all levels)',tAround:'Around a person',tLine:'Line',tCenter:'Centre',tByTribe:'Tribes',tByGroup:'Groups',tShowTl:'Show on timeline',tSpouse:'spouse',tMother:'mother',tApprox:'approximate years',tNoTribe:'tribe unknown',family:'Family tree',
  mode:'Mode',timeline:'Timeline',map:'Map',para:'Paradoxes of time',tree:'Family tree',randomP:'Random paradox',paraIntro:'Comparisons of spans of time. The numbers come from this timeline’s dates.',treeSoon:'The family tree will appear here: ancestors, descendants and siblings of the selected person, coloured by tribe.',mw:'Meanwhile',mwW0:'this year',mwW:n=>`±${n} years`,mwNone:'Nothing in the enabled groups for these years.',mwBack:'← Meanwhile',prevY:'Earlier',nextY:'Later',nYrs:n=>n+(Math.abs(n)===1?' year':' years'),groups:'Groups',certs:'Date certainty',groupsN:(n,m)=>`Groups: ${n} of ${m}`,certsAll:'Date certainty: all',certsN:c=>`Date certainty: ${c} of 3`,datesShort:'Dates',
- searchPh:'Find a person or event',searchAria:'Search by name',search:'Search',noMatch:'No matches',undated:'undated',
+ searchPh:'Find a person or event: Jeremiah, Exodus, Paul…',searchAria:'Search by name',search:'Search',noMatch:'No matches',undated:'undated',
  mapAria:'Map of places where people of the selected time are mentioned',v_canaan:'Canaan',v_east:'Near East',v_med:'Mediterranean',v_europe:'Europe',v_world:'World',places:'Places',states:'States',
  zoomIn:'Zoom in',zoomOut:'Zoom out',card:'Person card',close:'Close',info:'About, legend and sources',themeDark:'Dark theme',themeLight:'Light theme',/*@ru*/langBtn:'RU',langTitle:'Русская версия',/*@/ru*/
  certK:'Years known',certM:'From mentions in the text',certI:'Inferred from kinship',secBible:'Bible',secEvents:'Chronology',secRulers:'World rulers',secWorld:'The world around the Bible',secChurch:'Church history',secOther:'Other people of the Bible',
@@ -1379,33 +1381,70 @@ function dlT(y){if(y>=DL_SEG[0][0])return 0;let x=0;for(const g of DL_SEG){if(y<
 function dlY(t){let x=Math.max(0,Math.min(1000,t))/1000*DL_LEN;for(const g of DL_SEG){const w=(g[0]-g[1])*g[2];if(x<=w)return Math.round(g[0]-x/g[2]);x-=w}return -2030}
 const dlRound=y=>Math.abs(y)>=1000?Math.round(y/10)*10:Math.round(y/5)*5;
 
-// лист SVG: шапка, ось, строки шкалы, подписи групп, адрес сайта
+// общие части листа: логотип (как на сайте — слова и пиктограмма таймлайна), подпись справа, адрес сайта и QR-код внизу
+const SHEET_W=1600,SHEET_M=24;
+function titleFont(){return DL.fonts?'"Roboto Condensed"':'Arial, Helvetica, sans-serif'}
+function sheetLogo(x,y){const w=T('title').toUpperCase().split(' '),f=`800 24px ${titleFont()}`,c=document.createElement('canvas').getContext('2d');c.font=f;
+  const w0=c.measureText(w[0]).width,gap=6,ic=17.8,ff=f.replace('800 24px ','');
+  return `<text x="${x}" y="${y}" style="font-weight:800;font-size:24px;font-family:${ff.replace(/"/g,"'")};fill:var(--fg)">${esc(w[0])}</text>`+
+    `<svg x="${x+w0+gap}" y="${y-ic+1}" width="${ic}" height="${ic}" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" style="color:var(--fg)"><path d="M1 2.5h6M4 6h7M2.5 9.5h5"/></svg>`+
+    `<text x="${x+w0+gap*2+ic}" y="${y}" style="font-weight:800;font-size:24px;font-family:${ff.replace(/"/g,"'")};fill:var(--fg)">${esc(w.slice(1).join(' '))}</text>`}
+function sheetFrame(SW,SH,foot,right,inner){const M=SHEET_M,q=QR(),url=(typeof EDITION!=='undefined'&&EDITION.url||location.href).replace(/^https?:\/\//,'').replace(/\/$/,'');
+  return `<svg xmlns="http://www.w3.org/2000/svg" data-theme="light" width="${SW}" height="${SH}" viewBox="0 0 ${SW} ${SH}"><rect width="${SW}" height="${SH}" style="fill:var(--surface)"/>`+
+    sheetLogo(M,36)+`<text x="${SW-M}" y="36" text-anchor="end" style="font:600 16px var(--sans);fill:var(--muted)">${esc(right)}</text>`+inner+
+    (q?q.replace('<svg class="qr"',`<svg x="${SW-M-64}" y="${SH-foot+14}" width="64" height="64"`)+`<text x="${SW-M-74}" y="${SH-foot+52}" text-anchor="end" style="font:13px var(--sans);fill:var(--muted)">${esc(url)}</text>`
+      :`<text x="${SW-M}" y="${SH-10}" text-anchor="end" style="font:12px var(--sans);fill:var(--muted)">${esc(url)}</text>`)+'</svg>'}
+// лист шкалы: ось, строки шкалы, подписи групп
 function sheetSVG(a,b){
   const keep={ZOOM,OFF,VW,VIEW,placed,ROWS,H,TLINKS},sx=gbody.scrollLeft,sy=gbody.scrollTop,R0=render;
-  const W=1600,M=24,len=z=>{ZOOM=z;buildScale();return X0(b)-X0(a)};
+  const W=SHEET_W,M=SHEET_M,len=z=>{ZOOM=z;buildScale();return X0(b)-X0(a)};
   let lo=.02,hi=60;for(let k=0;k<40;k++){const m=(lo+hi)/2;if(len(m)<W)lo=m;else hi=m}ZOOM=lo;buildScale();
   OFF=0;VW=TW;const x0=X(a),x1=X(b),cw=x1-x0;VIEW=[x0,x1];
   render=()=>{};try{layout()}finally{render=R0}
   const body=bodyStr(true),axis=axisStr(),rows=ROWS.slice(),h=H;
-  const q=QR(),head=56,top=head+48,foot=q?84:30,SW=cw+2*M,SH=top+h+foot;
-  const title=T('title'),rng=fy(a,b),url=(typeof EDITION!=='undefined'&&EDITION.url||location.href).replace(/^https?:\/\//,'').replace(/\/$/,'');
+  const head=56,top=head+48,foot=QR()?84:30,SW=cw+2*M,SH=top+h+foot;
   const lab=rows.map(r=>{const w=Math.min(cw-8,(r.sub?6.6:7.4)*r.t.length+14),y=top+r.y+2;
     return `<rect x="${M+6}" y="${y}" width="${w}" height="16" rx="4" style="fill:var(--surface);opacity:.88"/><text x="${M+12}" y="${y+12}" style="font:${r.sub?'500 12px':'700 11.5px'} var(--sans);${r.sub?'fill:var(--muted)':`fill:${gcol(r.k)};letter-spacing:.05em;text-transform:uppercase`}${hlRow(r)?'':';opacity:.3'}">${esc(r.sub?r.t:r.t.toUpperCase())}</text>`}).join('');
-  const clip=`<clipPath id="dlc"><rect x="0" y="0" width="${cw}" height="${h+48}"/></clipPath>`;
-  const svg=`<svg xmlns="http://www.w3.org/2000/svg" data-theme="light" width="${SW}" height="${SH}" viewBox="0 0 ${SW} ${SH}">`+
-    `<defs>${clip}</defs><rect width="${SW}" height="${SH}" style="fill:var(--surface)"/>`+
-    `<text x="${M}" y="36" style="font:800 24px var(--title);fill:var(--fg);letter-spacing:.01em">${esc(title.toUpperCase())}</text>`+
-    `<text x="${SW-M}" y="36" text-anchor="end" style="font:600 16px var(--sans);fill:var(--muted)">${esc(rng)}</text>`+
+  const inner=`<defs><clipPath id="dlc"><rect x="0" y="0" width="${cw}" height="${h+48}"/></clipPath></defs>`+
     `<g transform="translate(${M},${head})" clip-path="url(#dlc)"><g transform="translate(${-x0},0)">${axis.replace(/^<svg[^>]*>|<\/svg>$/g,'')}</g>`+
     `<g transform="translate(${-x0},48)">${body.replace(/^<svg[^>]*>|<\/svg>$/g,'')}</g></g>`+
-    `<rect x="${M}" y="${head}" width="${cw}" height="${h+48}" rx="6" style="fill:none;stroke:var(--line)"/>${lab}`+
-    (q?q.replace('<svg class="qr"',`<svg x="${SW-M-64}" y="${SH-foot+14}" width="64" height="64"`)+`<text x="${SW-M-74}" y="${SH-foot+52}" text-anchor="end" style="font:13px var(--sans);fill:var(--muted)">${esc(url)}</text>`:`<text x="${SW-M}" y="${SH-10}" text-anchor="end" style="font:12px var(--sans);fill:var(--muted)">${esc(url)}</text>`)+'</svg>';
+    `<rect x="${M}" y="${head}" width="${cw}" height="${h+48}" rx="6" style="fill:none;stroke:var(--line)"/>${lab}`;
+  const svg=sheetFrame(SW,SH,foot,fy(a,b),inner);
   ZOOM=keep.ZOOM;buildScale();OFF=keep.OFF;VW=keep.VW;placed=keep.placed;ROWS=keep.ROWS;H=keep.H;TLINKS=keep.TLINKS;VIEW=keep.VIEW;
   gbody.scrollLeft=sx;gbody.scrollTop=sy;
   return {svg,w:SW,h:SH};}
-// для картинки стили страницы встраиваются в сам SVG (светлая тема)
-function sheetURL(s){const css=[...document.querySelectorAll('style')].map(x=>x.textContent).join('\n');
+// лист карты: карта так, как она видна сейчас (год, масштаб, слои)
+function mapSheetSVG(){const el=document.getElementById('map'),mw2=el.clientWidth||1000,mh2=el.clientHeight||600,M=SHEET_M,k=SHEET_W/mw2,cw=SHEET_W,ch=Math.round(mh2*k);
+  const head=56,foot=QR()?84:30,SW=cw+2*M,SH=head+ch+foot,y=curYear();
+  const inner=`<defs><clipPath id="dlm"><rect width="${cw}" height="${ch}" rx="6"/></clipPath></defs><g transform="translate(${M},${head})" clip-path="url(#dlm)"><rect width="${cw}" height="${ch}" style="fill:var(--sea)"/>`+
+    `<svg width="${cw}" height="${ch}" viewBox="0 0 ${mw2} ${mh2}">${el.innerHTML}</svg></g><rect x="${M}" y="${head}" width="${cw}" height="${ch}" rx="6" style="fill:none;stroke:var(--line)"/>`;
+  return {svg:sheetFrame(SW,SH,foot,(T('map')+(y!=null?' · '+fy1(Math.round(y)):'')),inner),w:SW,h:SH}}
+// шрифты сайта встраиваются в картинку (иначе в ней системные); если загрузить не удалось — системные
+function loadSheetFonts(){if(DL.fontsP)return DL.fontsP;
+  DL.fontsP=(async()=>{const link=document.querySelector('link[href*="fonts.googleapis.com/css"]');if(!link)return '';
+    const css=await (await fetch(link.href)).text(),out=[];
+    for(const m of css.matchAll(/\/\*\s*([\w-]+)\s*\*\/\s*@font-face\s*\{([^}]*)\}/g)){const sub=m[1],body=m[2];if(sub!=='latin'&&sub!=='cyrillic')continue;
+      const fam=(body.match(/font-family:\s*'([^']+)'/)||[])[1],wt=+((body.match(/font-weight:\s*(\d+)/)||[])[1]),st=(body.match(/font-style:\s*(\w+)/)||[])[1],url=(body.match(/url\((https:[^)]+)\)/)||[])[1];
+      if(!url||st==='italic')continue;if(!(fam==='Roboto Condensed'&&wt===800||fam==='Alegreya Sans'&&[400,500,700].includes(wt)))continue;
+      const buf=await (await fetch(url)).arrayBuffer();let bin='';const u8=new Uint8Array(buf);for(let i=0;i<u8.length;i+=32768)bin+=String.fromCharCode.apply(null,u8.subarray(i,i+32768));
+      out.push(body.replace(/url\([^)]+\)/,`url(data:font/woff2;base64,${btoa(bin)})`))}
+    return out.map(b=>'@font-face{'+b+'}').join('\n')})().then(c=>{DL.fonts=c||'';return DL.fonts}).catch(()=>{DL.fonts='';return ''});
+  return DL.fontsP}
+// для картинки стили страницы (и шрифты) встраиваются в сам SVG; светлая тема
+function sheetURL(s){const css=(DL.fonts||'')+'\n'+[...document.querySelectorAll('style')].map(x=>x.textContent).join('\n');
   const svg=s.svg.replace('>',`><style><![CDATA[${css}]]></style>`);return 'data:image/svg+xml;charset=utf-8,'+encodeURIComponent(svg)}
+// PDF без библиотек: одна страница A4 (альбомная или книжная по форме листа) с картинкой JPEG
+function pdfFromJPEG(jpg,w,h){const A4=[841.89,595.28],land=w>=h,pw=land?A4[0]:A4[1],ph=land?A4[1]:A4[0],k=Math.min(pw/w,ph/h),iw=w*k,ih=h*k,ix=(pw-iw)/2,iy=(ph-ih)/2;
+  const enc=new TextEncoder(),parts=[],offs=[];let len=0;const add=x=>{const b=typeof x==='string'?enc.encode(x):x;parts.push(b);len+=b.length};
+  const obj=(n,s,bin)=>{offs[n]=len;add(`${n} 0 obj\n${s}`);if(bin){add(bin);add('\nendstream')}add('\nendobj\n')};
+  const cs=`q ${iw.toFixed(2)} 0 0 ${ih.toFixed(2)} ${ix.toFixed(2)} ${iy.toFixed(2)} cm /Im0 Do Q`;
+  add('%PDF-1.4\n%\xE2\xE3\xCF\xD3\n');
+  obj(1,'<< /Type /Catalog /Pages 2 0 R >>');obj(2,'<< /Type /Pages /Kids [3 0 R] /Count 1 >>');
+  obj(3,`<< /Type /Page /Parent 2 0 R /MediaBox [0 0 ${pw} ${ph}] /Resources << /XObject << /Im0 4 0 R >> >> /Contents 5 0 R >>`);
+  obj(4,`<< /Type /XObject /Subtype /Image /Width ${w} /Height ${h} /ColorSpace /DeviceRGB /BitsPerComponent 8 /Filter /DCTDecode /Length ${jpg.length} >>\nstream\n`,jpg);
+  obj(5,`<< /Length ${cs.length} >>\nstream\n`,enc.encode(cs));
+  const xref=len;add(`xref\n0 6\n0000000000 65535 f \n${[1,2,3,4,5].map(n=>String(offs[n]).padStart(10,'0')+' 00000 n \n').join('')}trailer\n<< /Size 6 /Root 1 0 R >>\nstartxref\n${xref}\n%%EOF`);
+  return new Blob(parts,{type:'application/pdf'})}
 
 const dlDlg=document.getElementById('dlDlg'),dlImg=document.getElementById('dlImg');
 function dlFill(){for(const [k,y] of [['a',DL.a],['b',DL.b]]){document.getElementById('dl'+k+'N').value=Math.abs(y);document.getElementById('dl'+k+'E').value=y>0?'bc':'ad'}dlMini()}
@@ -1434,15 +1473,19 @@ function dlMini(){const W=dlM.clientWidth||600,Hm=46,px=y=>dlT(y)/1000*W,xa=px(D
      if(lastEra)dlSet(Math.max(a,lastEra[0]),Math.min(b,lastEra[1]));else dlSet(a,b);lastEra=lastEra?null:[a,b];return}
    if(d.moved)dlPreview()});
  addEventListener('resize',()=>{if(!dlDlg.hidden)dlMini()});}
-function dlPreview(){const tok=++DL.tok;clearTimeout(DL.tm);DL.tm=setTimeout(()=>{if(tok!==DL.tok)return;DL.s=sheetSVG(DL.a,DL.b);dlImg.src=sheetURL(DL.s);
-  document.getElementById('dlRng').textContent=fy(DL.a,DL.b)},120)}
+function dlBuild(){return DL.kind==='map'?mapSheetSVG():sheetSVG(DL.a,DL.b)}
+function dlPreview(){const tok=++DL.tok;clearTimeout(DL.tm);DL.tm=setTimeout(()=>{if(tok!==DL.tok)return;DL.s=dlBuild();dlImg.src=sheetURL(DL.s);
+  if(DL.kind!=='map')document.getElementById('dlRng').textContent=fy(DL.a,DL.b)},120)}
 function dlSet(a,b,quiet){if(a<b)[a,b]=[b,a];if(a-b<10)b=a-10;DL.a=Math.min(4200,a);DL.b=Math.max(-2030,b);dlFill();document.getElementById('dlRng').textContent=fy(DL.a,DL.b);if(!quiet)dlPreview()}
-function openDL(){let a=null,b=null;// по умолчанию — отрезок, который сейчас на экране (в режиме карты — без пустых полей по краям)
+function openDL(){DL.kind=mode==='map'?'map':'tl';let a=null,b=null;// по умолчанию — отрезок, который сейчас на экране (в режиме карты — без пустых полей по краям)
   if(gbody.clientWidth>0){a=XI(Math.max(gbody.scrollLeft+8,OFF+PAD));b=XI(Math.min(gbody.scrollLeft+gbody.clientWidth-8,OFF+TW-PAD-RPAD))}
   else{a=1050;b=586}
   if(a==null)a=b!=null&&b<10?10:400;if(b==null)b=a>400?400:-100;
-  dlDraw();dlDlg.hidden=false;requestAnimationFrame(()=>dlSet(dlRound(a),dlRound(b)))}
-function dlDraw(){document.getElementById('dlTtl').textContent=T('dlTitle');document.getElementById('dlNote').textContent=T('dlNote');
+  dlDraw();dlDlg.hidden=false;
+  if(DL.kind==='map'){const y=curYear();document.getElementById('dlRng').textContent=y!=null?fy1(Math.round(y)):'';dlPreview()}else requestAnimationFrame(()=>dlSet(dlRound(a),dlRound(b)));
+  if(DL.fonts===undefined)loadSheetFonts().then(()=>{if(!dlDlg.hidden)dlPreview()})}
+function dlDraw(){const map=DL.kind==='map';document.getElementById('dlTtl').textContent=T(map?'dlMapTitle':'dlTitle');document.getElementById('dlNote').textContent=T(map?'dlMapNote':'dlNote');
+  document.querySelector('.dlctl').hidden=map;document.getElementById('dlPdf').textContent=T('dlPdf');
   document.getElementById('dlaL').textContent=T('dlFrom');document.getElementById('dlbL').textContent=T('dlTo');document.getElementById('dlHint').textContent=T('dlHint');document.getElementById('dlGo').textContent=T('dlGo');
   for(const k of ['a','b'])document.getElementById('dl'+k+'E').innerHTML=`<option value="bc">${esc(T('bc'))}</option><option value="ad">${esc(T('ad'))}</option>`}
 for(const k of ['a','b']){
@@ -1452,14 +1495,19 @@ function dlClose(){dlDlg.hidden=true}
 document.getElementById('dlX').onclick=dlClose;dlDlg.addEventListener('click',e=>{if(e.target===dlDlg)dlClose()});
 document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!dlDlg.hidden)dlClose()});
 document.getElementById('dlBtn').onclick=openDL;
-document.getElementById('dlGo').onclick=()=>{const s=DL.s||sheetSVG(DL.a,DL.b),img=new Image();
+// сохранить файл: в артефакте Claude — через возможность downloads (с подтверждением), на сайте — обычной ссылкой
+async function dlSave(name,blob){const dl=window.claude&&window.claude.use?await window.claude.use('downloads').catch(()=>null):null;
+  if(dl){dl.save({filename:name,data:blob}).catch(()=>{});return}
+  const u=URL.createObjectURL(blob),l=document.createElement('a');l.href=u;l.download=name;document.body.appendChild(l);l.click();l.remove();setTimeout(()=>URL.revokeObjectURL(u),4000)}
+function dlName(ext){const yy=y=>y>0?y+'BC':'AD'+(-y);if(DL.kind==='map'){const y=curYear();return `bible-map${y!=null?'_'+yy(Math.round(y)):''}.${ext}`}return `bible-timeline_${yy(DL.a)}-${yy(DL.b)}.${ext}`}
+function dlRender(pdf){const s=DL.s||dlBuild(),img=new Image();
   img.onload=()=>{const k=Math.min(3508/s.w,16000/s.h),c=document.createElement('canvas');c.width=Math.round(s.w*k);c.height=Math.round(s.h*k);
-    const g=c.getContext('2d');g.drawImage(img,0,0,c.width,c.height);c.toBlob(async bl=>{const yy=y=>y>0?y+'BC':'AD'+(-y),name=`bible-timeline_${yy(DL.a)}-${yy(DL.b)}.png`;
-      // внутри артефакта Claude файл отдаётся через возможность downloads (с подтверждением), на сайте — обычной ссылкой
-      const dl=window.claude&&window.claude.use?await window.claude.use('downloads').catch(()=>null):null;
-      if(dl){dl.save({filename:name,data:bl}).catch(()=>{});return}
-      const u=URL.createObjectURL(bl),l=document.createElement('a');l.href=u;l.download=name;document.body.appendChild(l);l.click();l.remove();setTimeout(()=>URL.revokeObjectURL(u),4000)},'image/png')};
-  img.src=sheetURL(s)};
+    const g=c.getContext('2d');g.fillStyle='#fff';g.fillRect(0,0,c.width,c.height);g.drawImage(img,0,0,c.width,c.height);
+    if(!pdf){c.toBlob(bl=>dlSave(dlName('png'),bl),'image/png');return}
+    c.toBlob(async bl=>{const jpg=new Uint8Array(await bl.arrayBuffer());dlSave(dlName('pdf'),pdfFromJPEG(jpg,c.width,c.height))},'image/jpeg',.92)};
+  img.src=sheetURL(s)}
+document.getElementById('dlGo').onclick=()=>dlRender(false);
+document.getElementById('dlPdf').onclick=()=>dlRender(true);
 // ---------- Библия внутри страницы: Синодальный перевод и KJV (сжатый текст, распаковывается при первом открытии)
 const BFULL={/*@ru*/ru:{GEN:'Бытие',EXO:'Исход',LEV:'Левит',NUM:'Числа',DEU:'Второзаконие',JOS:'Иисус Навин',JDG:'Судьи',RUT:'Руфь','1SA':'1 Царств','2SA':'2 Царств','1KI':'3 Царств','2KI':'4 Царств','1CH':'1 Паралипоменон','2CH':'2 Паралипоменон',EZR:'Ездра',NEH:'Неемия',EST:'Есфирь',JOB:'Иов',PSA:'Псалтирь',PRO:'Притчи',ECC:'Екклесиаст',SNG:'Песнь песней',ISA:'Исаия',JER:'Иеремия',LAM:'Плач Иеремии',EZK:'Иезекииль',DAN:'Даниил',HOS:'Осия',JOL:'Иоиль',AMO:'Амос',OBA:'Авдий',JON:'Иона',MIC:'Михей',NAM:'Наум',HAB:'Аввакум',ZEP:'Софония',HAG:'Аггей',ZEC:'Захария',MAL:'Малахия',MAT:'От Матфея',MRK:'От Марка',LUK:'От Луки',JHN:'От Иоанна',ACT:'Деяния',JAS:'Иакова','1PE':'1 Петра','2PE':'2 Петра','1JN':'1 Иоанна','2JN':'2 Иоанна','3JN':'3 Иоанна',JUD:'Иуды',ROM:'Римлянам','1CO':'1 Коринфянам','2CO':'2 Коринфянам',GAL:'Галатам',EPH:'Ефесянам',PHP:'Филиппийцам',COL:'Колоссянам','1TH':'1 Фессалоникийцам','2TH':'2 Фессалоникийцам','1TI':'1 Тимофею','2TI':'2 Тимофею',TIT:'Титу',PHM:'Филимону',HEB:'Евреям',REV:'Откровение'},/*@/ru*/
  en:{GEN:'Genesis',EXO:'Exodus',LEV:'Leviticus',NUM:'Numbers',DEU:'Deuteronomy',JOS:'Joshua',JDG:'Judges',RUT:'Ruth','1SA':'1 Samuel','2SA':'2 Samuel','1KI':'1 Kings','2KI':'2 Kings','1CH':'1 Chronicles','2CH':'2 Chronicles',EZR:'Ezra',NEH:'Nehemiah',EST:'Esther',JOB:'Job',PSA:'Psalms',PRO:'Proverbs',ECC:'Ecclesiastes',SNG:'Song of Solomon',ISA:'Isaiah',JER:'Jeremiah',LAM:'Lamentations',EZK:'Ezekiel',DAN:'Daniel',HOS:'Hosea',JOL:'Joel',AMO:'Amos',OBA:'Obadiah',JON:'Jonah',MIC:'Micah',NAM:'Nahum',HAB:'Habakkuk',ZEP:'Zephaniah',HAG:'Haggai',ZEC:'Zechariah',MAL:'Malachi',MAT:'Matthew',MRK:'Mark',LUK:'Luke',JHN:'John',ACT:'Acts',ROM:'Romans','1CO':'1 Corinthians','2CO':'2 Corinthians',GAL:'Galatians',EPH:'Ephesians',PHP:'Philippians',COL:'Colossians','1TH':'1 Thessalonians','2TH':'2 Thessalonians','1TI':'1 Timothy','2TI':'2 Timothy',TIT:'Titus',PHM:'Philemon',HEB:'Hebrews',JAS:'James','1PE':'1 Peter','2PE':'2 Peter','1JN':'1 John','2JN':'2 John','3JN':'3 John',JUD:'Jude',REV:'Revelation'}};
