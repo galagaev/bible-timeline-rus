@@ -1417,7 +1417,7 @@ function drawStudy(){const box=document.getElementById('study'),ctl=document.get
   let h;
   if(!L)h=`<div class="st-h"><div class="st-k">${esc(Q.title)}</div><h2>${esc(T('studyIntro'))}</h2></div><div class="st-day">${stBlocks(Q.intro)}</div>`;
   else{const d=Math.min(ST.d||0,L.days.length-1),D=L.days[d];
-    h=`<div class="st-h"><div class="st-k">${esc(T('studyLesson'))} ${L.n} · ${esc(L.dates)}</div><h2>${esc(L.title)}</h2></div>`
+    h=`<div class="st-h"><div class="st-k">${esc(T('studyLesson'))} ${L.n} · ${esc(L.dates)}</div><h2>${L.th||esc(L.title)}</h2></div>`
      +`<nav class="st-days" role="tablist">${L.days.map((x,k)=>`<button type="button" role="tab" data-d="${k}" aria-selected="${k===d}" title="${esc(x.d+(x.date?', '+x.date:''))}"><b>${esc(x.s)}</b><small>${esc((x.date||'').split(' ')[0])}</small></button>`).join('')}</nav>`
      +`<div class="st-day">${D.title&&D.title!==L.title?`<h3>${D.th||esc(D.title)}</h3>`:''}<div class="st-date">${esc(D.d+(D.date?', '+D.date:''))}</div>`
      +(d===0?`<div class="st-box">${L.study?`<p><b>${esc(T('studyVerses'))}</b> ${L.study}</p>`:''}${L.memory?`<p><b>${esc(T('studyMemory'))}</b> ${L.memory}</p>`:''}</div>`:'')
