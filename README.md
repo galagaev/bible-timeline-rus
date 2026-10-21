@@ -4,7 +4,7 @@
 
 Интерактивная шкала времени Библии: пророки, цари Израиля и Иудеи, апостолы, судьи, женщины Библии, родословия от Адама до Иисуса, карта путешествий и государств, история церкви и мировые правители — всё в одном масштабе времени.
 
-**Сайт:** https://galagaev.github.io/bible-timeline-rus/  ·  English version: https://galagaev.github.io/bible-timeline/
+**Сайт:** https://openbibletimeline.org/  ·  English version: https://galagaev.github.io/bible-timeline/
 
 ![Библейский таймлайн](og.png)
 
